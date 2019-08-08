@@ -422,11 +422,6 @@
               <FilePath>.\interface\ADC.h</FilePath>
             </File>
             <File>
-              <FileName>FTM_PWM.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\FTM_PWM.c</FilePath>
-            </File>
-            <File>
               <FileName>FTM_PWM.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\interface\FTM_PWM.h</FilePath>
@@ -520,6 +515,11 @@
               <FileName>SSD1306_OLED.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\interface\SSD1306_OLED.h</FilePath>
+            </File>
+            <File>
+              <FileName>FTM_PWM.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\interface\FTM_PWM.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -1186,11 +1186,6 @@
               <FilePath>.\interface\ADC.h</FilePath>
             </File>
             <File>
-              <FileName>FTM_PWM.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\FTM_PWM.c</FilePath>
-            </File>
-            <File>
               <FileName>FTM_PWM.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\interface\FTM_PWM.h</FilePath>
@@ -1284,6 +1279,11 @@
               <FileName>SSD1306_OLED.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\interface\SSD1306_OLED.h</FilePath>
+            </File>
+            <File>
+              <FileName>FTM_PWM.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\interface\FTM_PWM.c</FilePath>
             </File>
           </Files>
         </Group>
