@@ -137,79 +137,73 @@ typedef struct
 	uint32_t GPREG4;
 } parameter_info_t;
 
-//*******************���Ŷ���
-#define IO_MCU_DEBUG_TXD (GPIO_PTB1) //���Դ���TX
-#define IO_MCU_DEBUG_RXD (GPIO_PTB0) //���Դ���RX
-#define IO_MCU_TXD2 (GPIO_PTC9)		 //cpuͨ�Ŵ���TX
-#define IO_MCU_RXD2 (GPIO_PTC8)		 //cpuͨ�Ŵ���RX
-#define IO_MCU_RTC_IN (GPIO_PTA7)	//MCU��RTCʱ������
-#define IO_MCU_SCL (GPIO_PTA3)		 //I2Cʱ��
-#define IO_MCU_SDA (GPIO_PTA2)		 //I2C����
-#define IO_MCU_SWD_CLK (GPIO_PTC4)   //SWDʱ��
-#define IO_MCU_SWD_DIO (GPIO_PTA4)   //SWD����
-#define IO_CAN0_RXD (GPIO_PTC2)		 //CANͨ��RX
-#define IO_CAN0_TXD (GPIO_PTC3)		 //CANͨ��TX
-//#define IO_CAN2_WAKE					(GPIO_PTD16)//can2����
-#define IO_MCU_XTAL (GPIO_PTB6)  //�ⲿ����
-#define IO_MCU_EXTAL (GPIO_PTB7) //�ⲿ����
-#define IO_LCD_POWER (GPIO_PTD12)
-#define IO_CAN0_WAKE (GPIO_PTC7)
-#define IO_CAN1_WAKE (GPIO_PTA0)
-#define IO_CAN2_WAKE (GPIO_PTA1)
-#define IO_SPI_MCU_SEND_FLAG (GPIO_PTD14)
-#define IO_INVALID (GPIO_INVALID) //��Ч��
+//************************DEMO IO Macro********
+#define DEMOIO_MCU_DEBUG_TXD (GPIO_PTB1) 
+#define DEMOIO_MCU_DEBUG_RXD (GPIO_PTB0) 
+#define DEMOIO_MCU_TXD2 (GPIO_PTC9)		 
+#define DEMOIO_MCU_RXD2 (GPIO_PTC8)		 
+#define DEMOIO_MCU_RTC_IN (GPIO_PTA7)	
+#define DEMOIO_MCU_SCL (GPIO_PTA3)		 
+#define DEMOIO_MCU_SDA (GPIO_PTA2)		 
+#define DEMOIO_MCU_SWD_CLK (GPIO_PTC4)   
+#define DEMOIO_MCU_SWD_DIO (GPIO_PTA4)   
+#define DEMOIO_CAN0_RXD (GPIO_PTC2)		 
+#define DEMOIO_CAN0_TXD (GPIO_PTC3)		
+#define DEMOIO_MCU_XTAL (GPIO_PTB6) 
+#define DEMOIO_MCU_EXTAL (GPIO_PTB7)
+#define DEMOIO_CAN0_WAKE (GPIO_PTC7)
+#define DEMOIO_CAN1_WAKE (GPIO_PTA0)
+#define DEMOIO_CAN2_WAKE (GPIO_PTA1)
+#define DEMOIO_INVALID (GPIO_INVALID) 
 
-#define IO_IIC_C IO_INVALID
+#define DEMOIO_IIC_C DEMOIO_INVALID
 
-#define GPIO0 (GPIO_PTB8)
-#define GPIO1 (GPIO_PTB9)
-#define GPIO2 (GPIO_PTB10)
-#define GPIO3 (GPIO_PTB11)
-#define GPIO4 (GPIO_PTD4)
-#define GPIO5 (GPIO_PTB14)
-#define GPIO6 (GPIO_PTB15)
-#define GPIO7 (GPIO_PTB16)
-#define GPIO8 (GPIO_PTB17)
-#define GPIO9 (GPIO_PTA17)
-#define GPIO10 (GPIO_PTB8)
-#define GPIO11 (GPIO_PTB8)
+#define DEMOIO_GPIO0 (GPIO_PTB8)
+#define DEMOIO_GPIO1 (GPIO_PTB9)
+#define DEMOIO_GPIO2 (GPIO_PTB10)
+#define DEMOIO_GPIO3 (GPIO_PTB11)
+#define DEMOIO_GPIO4 (GPIO_PTD4)
+#define DEMOIO_GPIO5 (GPIO_PTB14)
+#define DEMOIO_GPIO6 (GPIO_PTB15)
+#define DEMOIO_GPIO7 (GPIO_PTB16)
+#define DEMOIO_GPIO8 (GPIO_PTB17)
+#define DEMOIO_GPIO9 (GPIO_PTA17)
+#define DEMOIO_GPIO10 (GPIO_PTB8)
+#define DEMOIO_GPIO11 (GPIO_PTB8)
 
-#define SW0 (GPIO_PTC5)  //switch 4
-#define SW1 (GPIO_PTE0)  //switch 3
-#define SW2 (GPIO_PTE1)  //switch 2
-#define SW3 (GPIO_PTA10) //switch 1
+#define DEMOIO_SW0 (GPIO_PTC5)  //switch 4
+#define DEMOIO_SW1 (GPIO_PTE0)  //switch 3
+#define DEMOIO_SW2 (GPIO_PTE1)  //switch 2
+#define DEMOIO_SW3 (GPIO_PTA10) //switch 1
 
 #define HIGH 1
 #define LOW 0
 
+#define OLED_POWER (GPIO_PTD12)
 #define OLED_CS1 (GPIO_PTD14)
 #define OLED_DC (GPIO_PTE8)
 #define OLED_SDI (GPIO_PTD16)
 #define OLED_CLK (GPIO_PTD15)
-
 #define OLED_CS2 (GPIO_PTD14)
-#define OLED_FSO (GPIO_PTD14)
+#define OLED_FSO (GPIO_PTD13)
 
+////////////////////////////////////ADC/////////////////////////////////////////////
 #define ADC0ConvertBuffrtSize 4
 #define ADC1ConvertBuffrtSize 4
 #define Y_ADC0 0
 #define Y_ADC1 1
-#define CHANNEL_ADC(Z, X, Y) ((Z << 16) | (X << 8) | Y) //Z:ADCת��ͨ����0~7 ���8�� ����8����Ҫ�޸Ĵ��룩��˳���ţ�PDB��DMA˳��ת���� X��ADC��ţ�0��1�� Y��ADC�ɼ�ͨ��
+#define CHANNEL_ADC(Z, X, Y) ((Z << 16) | (X << 8) | Y) 
 #define GET_CHANNEL_ADC_X(Z) Z >> 8
 #define GET_CHANNEL_ADC_Y(Z) Z && 0XFF
 #define GET_CHANNEL_ADC_Z(Z) Z >> 16
 
-#define CHANNEL_ADC_LEFTTURNLAMPERRDETECT CHANNEL_ADC(0, Y_ADC0, 15) //ת���
-#define CHANNEL_ADC_LIGHT CHANNEL_ADC(1, Y_ADC0, 7)					 // ��ƿ���
-#define CHANNEL_ADC_BATVOLDETECT CHANNEL_ADC(2, Y_ADC0, 2)			 // ���ص�ѹ���
-#define CHANNEL_ADC_FRONTWIPERSENITYADJ CHANNEL_ADC(3, Y_ADC0, 8)	// ǰ���
+#define CHANNEL_ADC_0 CHANNEL_ADC(0, Y_ADC1, 10) 
+#define CHANNEL_ADC_1 CHANNEL_ADC(1, Y_ADC1, 11)					 
+#define CHANNEL_ADC_2 CHANNEL_ADC(2, Y_ADC1, 12)			 
+#define CHANNEL_ADC_3 CHANNEL_ADC(3, Y_ADC1, 13)	
+#define CHANNEL_ADC_4 CHANNEL_ADC(4, Y_ADC1, 4)
 
-#define CHANNEL_ADC_HANDBRAKE_CURRENT CHANNEL_ADC(0, Y_ADC1, 10) // ��ɲ����������
-#define CHANNEL_ADC_HANDBRAKE CHANNEL_ADC(1, Y_ADC1, 12)		 // ��ɲ��������-��ɲ����
-#define CHANNEL_ADC_HANDBRAKE_RELEASE CHANNEL_ADC(2, Y_ADC1, 11) // ��ɲ��������-��ɲ����
-
-#define KEY_ADC_REF_VOLTAGE 3300 //3300mV
-#define KEY_ADC_RESOLUTION 12
+////////////////////////////////////////////////////////////////////////////////////
 
 #define PWM_FREQ_100Hz 10000
 #define PWM_FREQ_1KHz 1000

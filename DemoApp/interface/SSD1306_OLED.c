@@ -138,12 +138,16 @@ void OLED_CLS(void) //«Â∆¡
 
 void OLED_Init(void)
 {
+
+	IO_Write(OLED_POWER, true);
+	Delayms(10);
+
 	IO_Write(OLED_CS1, TRUE);
 	IO_Write(OLED_DC, TRUE);
 	IO_Write(OLED_SDI, TRUE);
 	IO_Write(OLED_CLK, TRUE);
 
-	IO_Write(IO_SPI_MCU_SEND_FLAG, FALSE);
+	IO_Write(OLED_CS2, FALSE);
 
 	Delayms(200);
 

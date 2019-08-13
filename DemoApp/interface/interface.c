@@ -139,9 +139,6 @@ void FirstPowerOnparementInit(void)
 
 static void SSD1306LCD_Init(void)
 {
-	IO_Write(IO_LCD_POWER, true);
-
-	Delayms(10);
 	OLED_Init();
 	FF_Init();
 	OLED_Fill(0);

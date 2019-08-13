@@ -515,9 +515,9 @@ void CanDeInit(void)
 void CanInit(void)
 {
 	//All CAN WAKE
-	IO_Write(IO_CAN0_WAKE, FALSE); //can0 en
-	IO_Write(IO_CAN1_WAKE, FALSE); //can1 en
-	IO_Write(IO_CAN2_WAKE, FALSE); //can2 en
+	IO_Write(DEMOIO_CAN0_WAKE, FALSE); //can0 en
+	IO_Write(DEMOIO_CAN1_WAKE, FALSE); //can1 en
+	IO_Write(DEMOIO_CAN2_WAKE, FALSE); //can2 en
 
 	CanFifoInit();
 	CanProtocolInit();
