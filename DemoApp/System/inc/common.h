@@ -7,8 +7,6 @@
 //#include "lpc17xx_clkpwr.h"
 
 #include "fly_types.h"
-#include "ipcEventDef.h"
-#include "ipcEvent.h"
 #include "interface.h"
 
 #define 	T_1MS		(1)

@@ -376,34 +376,6 @@ void FlyCan2SendMsgToCanBus(void)
 	}
 }
 
-/**********************************************************************************************************************
-**函数名称:	 	ipcEventCanGet
-**函数功能:
-**入口参数:
-**返回参数:
-**********************************************************************************************************************/
-static void ipcEventCanGet(event_t evt, uint32_t *param, uint8_t *p, uint16_t len)
-{
-	//	CanProtocolEventGetProc(evt, param, p, len);
-}
-
-///**********************************************************************************************************************
-//**函数名称:	 	ipcEventCanSet
-//**函数功能:
-//**入口参数:
-//**返回参数:
-//**********************************************************************************************************************/
-static void ipcEventCanSet(event_t evt, uint32_t param, uint8_t *p, uint16_t len)
-{
-	switch (evt)
-	{
-
-	default:
-		break;
-	}
-
-	//	CanProtocolEventSetProc(evt, param, p, len);
-}
 
 void CanProc(void)
 {
@@ -523,10 +495,6 @@ void CanInit(void)
 	CanProtocolInit();
 }
 
-void CanIpcEventRegister(void)
-{
-	//ipcEventRegister(EVT_MODE_CAN, ipcEventCanGet, ipcEventCanSet);
-}
 
 void CanProtocolInit(void)
 {

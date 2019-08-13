@@ -2,8 +2,6 @@
 #include <string.h>
 
 #include "config.h"
-#include "ipcEvent.h"
-#include "ipcEventDef.h"
 #include "interface.h"
 
 

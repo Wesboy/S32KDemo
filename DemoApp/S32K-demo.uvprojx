@@ -521,6 +521,11 @@
               <FileType>1</FileType>
               <FilePath>.\interface\FTM_PWM.c</FilePath>
             </File>
+            <File>
+              <FileName>can.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\interface\can.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -750,21 +755,6 @@
               <FileName>lin_irq.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\Device\lin_irq.c</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
-          <GroupName>System</GroupName>
-          <Files>
-            <File>
-              <FileName>can.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\System\can.c</FilePath>
-            </File>
-            <File>
-              <FileName>ipcEvent.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\System\ipcEvent.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -1285,6 +1275,11 @@
               <FileType>1</FileType>
               <FilePath>.\interface\FTM_PWM.c</FilePath>
             </File>
+            <File>
+              <FileName>can.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\interface\can.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -1514,21 +1509,6 @@
               <FileName>lin_irq.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\Device\lin_irq.c</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
-          <GroupName>System</GroupName>
-          <Files>
-            <File>
-              <FileName>can.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\System\can.c</FilePath>
-            </File>
-            <File>
-              <FileName>ipcEvent.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\System\ipcEvent.c</FilePath>
             </File>
           </Files>
         </Group>

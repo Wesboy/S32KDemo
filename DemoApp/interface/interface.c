@@ -87,13 +87,13 @@ void GoT0WhatStatus(uint32_t Address)
 	JumpAddress = *(volatile uint32_t *)(Address + 4);
 	Jump_To_Application = (pFunction)JumpAddress;
 	__set_PSP(*(volatile uint32_t *)Address);
-	__set_CONTROL(0); //???????????????...
+	__set_CONTROL(0); 
 	__set_MSP(*(volatile uint32_t *)Address);
 	S32_SCB->VTOR = (Address & 0x3FFFFF80);
-	//	_EI();           //?????????????,??????????????
-	INT_SYS_DisableIRQ(LPUART0_RxTx_IRQn); //?????????????????????????????????????Rx??????????
+	//	_EI();           
+	INT_SYS_DisableIRQ(LPUART0_RxTx_IRQn); 
 	Jump_To_Application();
-	Jump_To_Application(); //?????????????????????????
+	Jump_To_Application(); 
 }
 
 /***************************************************************************************************************************
@@ -160,7 +160,6 @@ void Interface_Init(void)
 	SysTickInit();
 	Debug_Uart();
 
-	ipcEventInit();
 	PrintWellcomeMsg();
 
 	FirstPowerOnparementInit();
@@ -194,8 +193,31 @@ void SysTick_100ms(void)
 	{
 		ResetUserTimer(&iTimer100ms);
 
-		printf("test->1s->\r\n");
 		OLE_Display_Char((u8 *)"Hello!!!", (u8 *)"FlyAudio", (u8 *)"Control_borad");
+	}
+}
+
+void ADCProc(void)
+{
+	static u32 timer = 0;
+
+	if (ReadUserTimer(&timer) > 500)
+	{
+		u16 ADC_0 = 0;
+		u16 ADC_1 = 0;
+		u16 ADC_2 = 0;
+		u16 ADC_3 = 0;
+		u16 ADC_4 = 0;
+
+		ResetUserTimer(&timer);
+
+		ADC_0 = GetAdcChannelValue(CHANNEL_ADC_0);
+		ADC_1 = GetAdcChannelValue(CHANNEL_ADC_1);
+		ADC_2 = GetAdcChannelValue(CHANNEL_ADC_2);
+		ADC_3 = GetAdcChannelValue(CHANNEL_ADC_3);
+		ADC_4 = GetAdcChannelValue(CHANNEL_ADC_4);
+
+		printf("ADC : 0x%x 0x%x 0x%x 0x%x 0x%x\r\n", ADC_0, ADC_1, ADC_2, ADC_3, ADC_4);
 	}
 }
 
@@ -204,40 +226,18 @@ void FlySystemProc(void)
 	SysTick_100ms();
 	//FTM_input_capture();
 	//CanProc();
+	//LinProc();
+	ADCProc();
+	//CapturePro();
+	//GPIOProc();
+	//DataRouter(); //数据整理转发路由功能
 	FeedWdt();
 	DebugPro();
 }
 
-static void ipcEventChipGet(event_t evt, uint32_t *param, uint8_t *p, uint16_t len)
-{
-	switch (evt)
-	{
-	default:
-		break;
-	}
-}
 static void ChipPeriodDebug(void)
 {
 	printf("\r\n WakeSrc:%d", paramInfo->WakeUpSrc);
-}
-
-static void ipcEventChipSet(event_t evt, uint32_t param, uint8_t *p, uint16_t len)
-{
-	switch (evt)
-	{
-	default:
-		break;
-	}
-}
-void chipIpcEventRegister(void)
-{
-	//ipcEventRegister(EVT_MODE_CHIP, ipcEventChipGet, ipcEventChipSet);
-}
-
-void ModuleIpcEventRegister(void)
-{
-	CanIpcEventRegister();
-	chipIpcEventRegister();
 }
 
 void FlySystem_DisableOutput(void)

@@ -4,7 +4,6 @@
 #include "stdio.h"
 #include "string.h"
 #include "stdint.h"
-#include "ipcEvent.h"
 #include "ConfigFile.h"
 #include "misc.h"
 #include "fifo.h"
@@ -73,45 +72,6 @@ typedef struct CHIP_INFO
 ////////////////////////////////////////////////////////////////////////////////////////
 #define PINSEL_PIN_XXX (80)
 ////////////////////////////////////////////////////////////////////////////////////////
-
-typedef union T123PROGRAMBUILDTIME {
-	struct
-	{
-		uint8_t year;
-		uint8_t month;
-		uint8_t day;
-		uint8_t hour;
-		uint8_t min;
-		uint8_t sec;
-	} T123ProgramBuildTimeStruct;
-	uint8_t T123ProgramBuildTimeBuf[6];
-} T123PROGRAMBUILDTIME_UNION;
-
-typedef struct T123RAMINFO
-{
-	uint8_t T123ProgramVersion[4];
-	uint32_t HaveT123ProgramVersion;
-
-	T123PROGRAMBUILDTIME_UNION T123ProgramBuildTime;
-	uint32_t HaveT123ProgramBuildTime;
-
-	uint8_t T123FlashSize;
-	uint32_t HaveT123FlashSize;
-} T123RAMINFO_STRU;
-
-typedef struct
-{
-	uint8_t ParamIsValid;
-	uint8_t bUseSaveParam;
-	uint8_t Band;
-	uint16_t FreqOfFM;
-	uint16_t FreqOfAM;
-	uint8_t AreaUserID;
-	uint8_t StopSensitivity;
-	uint8_t StopMuted;
-	uint8_t RDS_AFTA_Enable;
-} radio_param_t;
-
 typedef struct
 {
 	U32 FirstPowerOn1;
@@ -124,8 +84,6 @@ typedef struct
 	uint32_t havepowerdownAndroid;
 
 	BOOL bOpenLcdStatus;
-	T123RAMINFO_STRU T123RamInfo;
-	radio_param_t radioInfo;
 
 	uint32_t asyncreset;
 	uint32_t PowerManage_StandbyMode;
@@ -242,6 +200,7 @@ void carBusDeInit(void);
 void CanDeInit(void);
 void AllIOConfigInputForSleep(void);
 ePowerStatus GetPowerOnBootMode(void);
+void ModuleIpcEventRegister(void);
 
 void carBusIpcEventRegister(void);
 void UserResetSystem(void);
