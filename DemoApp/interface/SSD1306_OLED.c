@@ -46,8 +46,7 @@
 
 extern void DelayUs(u8 time);
 
-void
-OLED_WrDat(unsigned char dat) //写数据
+void OLED_WrDat(unsigned char dat) //写数据
 {
 	unsigned char i;
 	OLED_DC_Set();
@@ -108,6 +107,26 @@ void OLED_Fill(unsigned char bmp_dat) //全屏填充
 		{
 			OLED_WrDat(bmp_dat);
 		}
+	}
+	OLED_CS_Set();
+}
+
+// iLine < 8
+static void OLED_Line_Fill(unsigned char iLine, unsigned char bmp_dat) //全屏填充
+{
+	if (iLine > 7)
+		return;
+
+	unsigned char x;
+
+	OLED_CS_Clr();
+
+	OLED_WrCmd(0xb0 + iLine);
+	OLED_WrCmd(0x01);
+	OLED_WrCmd(0x10);
+	for (x = 0; x < X_WIDTH; x++)
+	{
+		OLED_WrDat(bmp_dat);
 	}
 	OLED_CS_Set();
 }
@@ -311,14 +330,15 @@ void OLED_BMP(unsigned char x0, unsigned char y0, unsigned char x1, unsigned cha
 
 void OLE_Display_Char(u8 *GBCodeptr0, u8 *GBCodeptr1, u8 *GBCodeptr2)
 {
-	OLED_CLS();
+	//OLED_CLS();
+	OLED_Line_Fill(7, 0x00);
 	Delayms(1);
 	LcdDisplay_ASCII(0, GBCodeptr0);
 	LcdDisplay_ASCII(1, GBCodeptr1);
 	LcdDisplay_ASCII(2, GBCodeptr2);
-	LcdDisplay_ASCII(3, "  ");
-	LcdDisplay_ASCII(4, "  ");
-	LcdDisplay_ASCII(5, "  ");
-	LcdDisplay_ASCII(6, "  ");
-	LcdDisplay_ASCII(7, "  ");
+	LcdDisplay_ASCII(3, "Fuck three Line");
+	LcdDisplay_ASCII(4, "what 4");
+	LcdDisplay_ASCII(5, "shazi 5");
+	LcdDisplay_ASCII(6, "shit 6");
+	LcdDisplay_ASCII(7, "test 7");
 }

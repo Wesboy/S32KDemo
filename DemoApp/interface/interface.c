@@ -137,6 +137,17 @@ void FirstPowerOnparementInit(void)
 	}
 }
 
+static void SSD1306LCD_Init(void)
+{
+	IO_Write(IO_LCD_POWER, true);
+
+	Delayms(10);
+	OLED_Init();
+	FF_Init();
+	OLED_Fill(0);
+	Delayms(10);
+}
+
 void Interface_Init(void)
 {
 	clock_manager_user_config_t config;
@@ -166,6 +177,8 @@ void Interface_Init(void)
 	SPI1_Init();
 	SPI2_Init();
 	I2CMasterInit(100000);
+
+	SSD1306LCD_Init();
 }
 
 void AllIOConfigInputForSleep(void)
@@ -192,7 +205,7 @@ void SysTick_100ms(void)
 void FlySystemProc(void)
 {
 	SysTick_100ms();
-	FTM_input_capture();
+	//FTM_input_capture();
 	//CanProc();
 	FeedWdt();
 	DebugPro();
