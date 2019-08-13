@@ -6,21 +6,13 @@
 #include "ipcEventDef.h"
 #include "interface.h"
 
-//#include "codetab.h"
 
-#if defined(HEX_DEBUG)
-#define SysGuideCfgAddressEntry ParameterSection2FlashEntry// 0x00005200
-const unsigned CRP_VERSION1 __attribute__((at(SysGuideCfgAddressEntry))) = 0x12345678;
-const unsigned CRP_VERSION2 __attribute__((at(SysGuideCfgAddressEntry+0X04))) = 0x87654321;
-#endif
+//void LpuartDeInit(unsigned char uart_Nu);
+void WatchdogInit(void);
 
- //void LpuartDeInit(unsigned char uart_Nu);
- void WatchdogInit(void);
-extern unsigned char testbmp[][31];
 int main(void)
 {
-	Interface_DebugInit();
-	printf("\r\nLPC BuileTime:%s %s",__DATE__,__TIME__);
+	Interface_Init();
 
 	IO_Write(IO_LCD_POWER,true);
 	IO_Write(IO_CAN0_WAKE,FALSE); //can0 en

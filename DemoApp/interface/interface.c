@@ -9,8 +9,8 @@ typedef struct
 uint8_t menu[] =
 	"\r\n******************************************\r\n"
 	"              Hello World                 \r\n"
-	"             Created By: WYH		       \r\n"
-	"==============Flyaudio?????==============\r\n"
+	"=================S32K Demo================\r\n"
+	"======Func：PWM IO CAN SPI LIN CHT========\r\n"
 	"******************************************\r\n";
 
 #define PARAMETER_ADDRESS ParameterSection1Ram1Entry
@@ -74,6 +74,7 @@ void PrintWellcomeMsg(void)
 	printf("%d:", hours);
 	printf("%d:", minutes);
 	printf("%d", seconds);
+	printf("\r\nLPC BuileTime:%s %s", __DATE__, __TIME__);
 }
 
 void GoT0WhatStatus(uint32_t Address)
@@ -108,7 +109,6 @@ void UserResetSystem(void)
 	NVIC_SystemReset();
 }
 
-
 void chipInit(void)
 {
 
@@ -137,7 +137,7 @@ void FirstPowerOnparementInit(void)
 	}
 }
 
-void Interface_DebugInit(void)
+void Interface_Init(void)
 {
 	clock_manager_user_config_t config;
 	chipInit();
@@ -150,26 +150,17 @@ void Interface_DebugInit(void)
 	CLOCK_SYS_SetConfiguration(&config);											//时钟初始化，默认osc=8M
 
 	SysTickInit();
-	Debug();
+	Debug_Uart();
 
 	ipcEventInit();
 	PrintWellcomeMsg();
-	if (RESETUP == GetPowerOnBootMode())
-	{
-		printf("\n\r System Reset");
-	}
-	else if (WAKEUP == GetPowerOnBootMode())
-	{
-		printf("\n\r System Awake");
-	}
+
 	FirstPowerOnparementInit();
 
 	DMA_Init();
 	PutAllDebugInfor();
 
 	ADC_init();
-	//PWM1ConfigInit();
-	//FTM_IC_init();
 	CanInit();
 
 	SPI1_Init();
@@ -241,7 +232,6 @@ void ModuleIpcEventRegister(void)
 
 void FlySystem_DisableOutput(void)
 {
-
 }
 
 void _DI()

@@ -2,7 +2,6 @@
 
 #include "interface.h"
 
-
 static uint32_t _sys_tick_count = 0;
 /*****************************************************************************
 **函数名称:	 	ReadUserTimer
@@ -30,7 +29,7 @@ void ResetUserTimer(uint32_t *Timer)
 **入口参数:
 **返回参数:
 ******************************************************************************/
-void SetUserTimer(uint32_t *Timer,uint32_t T)
+void SetUserTimer(uint32_t *Timer, uint32_t T)
 {
 	*Timer = _sys_tick_count + T;
 }
@@ -57,8 +56,8 @@ uint32_t TimerGetSystemTimer(void)
 void Delayms(uint32_t Time)
 {
 	uint32_t t;
-	ResetUserTimer(&t);	
-	while(ReadUserTimer(&t) < Time)
+	ResetUserTimer(&t);
+	while (ReadUserTimer(&t) < Time)
 	{
 		FeedWdt();
 	}
@@ -72,9 +71,9 @@ void Delayms(uint32_t Time)
 ******************************************************************************/
 void SysTick_Handler()
 {
-//	static u8 iCnt;
- //	SYSTICK_ClearCounterFlag();
-		do
+	//	static u8 iCnt;
+	//	SYSTICK_ClearCounterFlag();
+	do
 	{
 		_sys_tick_count++;
 	} while (0 == _sys_tick_count);
@@ -89,17 +88,15 @@ void SysTick_Handler()
 
 void SysTickInit(void)
 {
-	//1ms	
-
-	  uint32_t core_freq = 0u;
-    /* Get the correct name of the core clock */
-    clock_names_t coreclk = CORE_CLK;
-    status_t clk_status = CLOCK_SYS_GetFreq(coreclk, &core_freq);
-  //S32_SysTick->RVR = S32_SysTick_RVR_RELOAD(core_freq / 1000-1000);
+	//1ms
+	uint32_t core_freq = 0u;
+	/* Get the correct name of the core clock */
+	clock_names_t coreclk = CORE_CLK;
+	status_t clk_status = CLOCK_SYS_GetFreq(coreclk, &core_freq);
+	//S32_SysTick->RVR = S32_SysTick_RVR_RELOAD(core_freq / 1000-1000);
 	S32_SysTick->RVR = S32_SysTick_RVR_RELOAD(core_freq / 1000);
-  S32_SysTick->CSR = S32_SysTick_CSR_ENABLE(1u) | S32_SysTick_CSR_TICKINT(1u);
-	S32_SysTick->CSR &=~S32_SysTick_CSR_CLKSOURCE_MASK;
-	
+	S32_SysTick->CSR = S32_SysTick_CSR_ENABLE(1u) | S32_SysTick_CSR_TICKINT(1u);
+	S32_SysTick->CSR &= ~S32_SysTick_CSR_CLKSOURCE_MASK;
 }
 /*****************************************************************************
 **函数名称:	 	SysTickDeInit
@@ -112,7 +109,6 @@ void SysTickDeInit(void)
 	SysTick->CTRL &= ~SysTick_CTRL_TICKINT_Msk;
 	SysTick->CTRL &= ~SysTick_CTRL_ENABLE_Msk;
 }
-				
 
 /*****************************************************************************
 *  Name        : TimerHasExpired
@@ -126,13 +122,13 @@ void SysTickDeInit(void)
 *  Params      : STimer pointer to timer value
 *  Returns     :  TRUE if timer has expired or timer is stopped, otherwise FALSE
 *****************************************************************************/
-uint8_t TimerHasExpired (uint32_t *STimer)
+uint8_t TimerHasExpired(uint32_t *STimer)
 {
-	if(*STimer == 0)
+	if (*STimer == 0)
 		return TRUE;
-	else if((_sys_tick_count - *STimer) <= 0x7fffffff)
+	else if ((_sys_tick_count - *STimer) <= 0x7fffffff)
 	{
-		*STimer = 0;	//set timer to stop
+		*STimer = 0; //set timer to stop
 		return TRUE;
 	}
 	else
@@ -150,7 +146,8 @@ void TimerSet(uint32_t *STimer, uint32_t TimeLength)
 {
 	*STimer = _sys_tick_count + TimeLength;
 
-	if(*STimer == 0)	*STimer = 1; //not set timer to 0 for timer is running
+	if (*STimer == 0)
+		*STimer = 1; //not set timer to 0 for timer is running
 }
 /*****************************************************************************
 *  Name        : TimerStop
@@ -162,13 +159,3 @@ void TimerStop(uint32_t *STimer)
 {
 	*STimer = 0;
 }
-
-
-
-
-
-
-
-
-
-

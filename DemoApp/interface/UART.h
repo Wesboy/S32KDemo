@@ -3,8 +3,7 @@
 
 void DebugPro(void);
 void PutAllDebugInfor(void);
-void AndroidCommIOInit(void);
-void Debug(void);
+void Debug_Uart(void);
 void Uart2_Init(void);
 #endif
 
