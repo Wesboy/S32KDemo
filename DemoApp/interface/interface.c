@@ -261,6 +261,7 @@ void SysTick_100ms(void)
 		ResetUserTimer(&iTimer100ms);
 
 		printf("test->1s->\r\n");
+		OLE_Display_Char((u8 *)"Hello!!!", (u8 *)"FlyAudio", (u8 *)"Control_borad");
 	}
 }
 

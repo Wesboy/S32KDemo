@@ -41,6 +41,10 @@
 #include "pdb_driver.h"
 
 
+#include "SSD1306_OLED.h"
+#include "SSD1306_flash.h"
+
+
 #include "DMA.h"
 #include "SPI.h"
 #include "Watchdog.h"
