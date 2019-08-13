@@ -5,14 +5,14 @@
 #include "interface.h"
 
 void FF_Init(void);
-u8 Write_FF(u8 value);
+uint8_t Write_FF(uint8_t value);
 void FF_ChipErase(void);
 void FF_WriteEnable(void);
-u8 FF_ReadStatusReg(void);
-void FF_WriteStatusReg(u8 dat);
-void FF_PageWrite(u8 *pBuffer, u32 addr, u16 num);  
+uint8_t FF_ReadStatusReg(void);
+void FF_WriteStatusReg(uint8_t dat);
+void FF_PageWrite(uint8_t *pBuffer, uint32_t addr, uint16_t num);  
 void FF_WaitForWriteEnd(void);
 
-void Read_FLASH(u8* pBuffer, u32 ReadAddr, u16 NumByteToRead);
+void Read_FLASH(uint8_t* pBuffer, uint32_t ReadAddr, uint16_t NumByteToRead);
 
 #endif /* end of lcd_flash.h*/

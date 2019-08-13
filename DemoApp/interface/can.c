@@ -25,7 +25,7 @@ typedef struct
 typedef struct
 {
 	bool msgOverFlowDisplayFlag;
-	u32 buffer[256][4];
+	uint32_t buffer[256][4];
 	can_fifo_t CanFifo;
 } CarCanRxFifo_t2;
 typedef struct
@@ -395,7 +395,7 @@ void CanProc(void)
 		CAN_FIFO_GET_ONE(CanRxFifo, &mCanMsg);
 		CanProtocolRxMsgProc(&mCanMsg);
 	}
-	else if (ReadUserTimer(&HaveCanMsgStatusTimer) > T_1S * 2)
+	else if (ReadUserTimer(&HaveCanMsgStatusTimer) > 1000 * 2)
 	{
 		//CAN总线超过2S没有接收到消息,就认为车已经休眠下去了
 		ResetUserTimer(&HaveCanMsgStatusTimer);
@@ -419,7 +419,7 @@ void CanProc(void)
 		CAN_FIFO_GET_ONE(Can1RxFifo, &mCanMsg);
 		Can1ProtocolRxMsgProc(&mCanMsg);
 	}
-	else if (ReadUserTimer(&HaveCan1MsgStatusTimer) > T_1S * 2)
+	else if (ReadUserTimer(&HaveCan1MsgStatusTimer) > 1000 * 2)
 	{
 		//CAN总线超过2S没有接收到消息,就认为车已经休眠下去了
 		ResetUserTimer(&HaveCan1MsgStatusTimer);

@@ -20,8 +20,8 @@
 * Function List:
 *
 * 1. void FF_Init(void) -- 字库芯片初始化
-* 2. u8 Write_FF(u8 value) -- 向字库芯片写一个byte的数据(命令)
-* 3. void Read_FLASH(u8* pBuffer, u32 ReadAddr, u16 NumByteToRead) -- 读取字库芯片中的内容
+* 2. uint8_t Write_FF(uint8_t value) -- 向字库芯片写一个byte的数据(命令)
+* 3. void Read_FLASH(uint8_t* pBuffer, uint32_t ReadAddr, uint16_t NumByteToRead) -- 读取字库芯片中的内容
 *
 * History: none;
 *
@@ -32,7 +32,7 @@
 #include "interface.h"
 
 	
-void DelayUs(u8 time)
+void DelayUs(uint8_t time)
 {
 	int i;
 	for(;time>0;time--)
@@ -46,15 +46,15 @@ void DelayUs(u8 time)
   }
 }
 	
-void FF_CS(u8 value)
+void FF_CS(uint8_t value)
 {
 	IO_Write(OLED_CS2, value);    //CS2
 }
-void FF_SO(u8 value)
+void FF_SO(uint8_t value)
 {
 	IO_Write(OLED_SDI, value);    //SDI
 }
-void FF_CLK(u8 value)
+void FF_CLK(uint8_t value)
 {
 	IO_Write(OLED_CLK, value); //CLK
 }
@@ -65,10 +65,10 @@ void FF_Init(void)
 	FF_CLK(1);
 }
 
-u8 Write_FF(u8 value)
+uint8_t Write_FF(uint8_t value)
 {
-	u8 i;
-	u8 temp=0;
+	uint8_t i;
+	uint8_t temp=0;
 	FF_CLK(1);
 	for(i=0;i<8;i++)
 	{
@@ -89,7 +89,7 @@ u8 Write_FF(u8 value)
 	return(temp);
 }
 
-void Read_FLASH(u8* pBuffer, u32 ReadAddr, u16 NumByteToRead)
+void Read_FLASH(uint8_t* pBuffer, uint32_t ReadAddr, uint16_t NumByteToRead)
 {
 	OLED_CS_Set();//取消OLED选中
 	FF_CS(0);//选中FLASH芯片

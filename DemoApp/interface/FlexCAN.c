@@ -12,12 +12,12 @@ typedef struct
 {
 	flexcan_data_info_t tx_info;
 	uint8_t Data[8];
-	u32 id;
+	uint32_t id;
 }FlexCAN_MSG_Type;
 
-u32 CANRXbuffer[4] __attribute__ ((aligned (32)));
-u32 CAN1RXbuffer[4] __attribute__ ((aligned (32)));
-u32 CAN2RXbuffer[4] __attribute__ ((aligned (32)));
+uint32_t CANRXbuffer[4] __attribute__ ((aligned (32)));
+uint32_t CAN1RXbuffer[4] __attribute__ ((aligned (32)));
+uint32_t CAN2RXbuffer[4] __attribute__ ((aligned (32)));
 /*******************************************************************************************
 **函数名称:		CANLPCRxMsg2RxStdMsg
 **函数功能:
@@ -87,7 +87,7 @@ void CANTxStdMsg2LPCTxMsg(CanTxMsg *Flystd,FlexCAN_MSG_Type *lpc)
 **入口参数:     无
 **返回参数:     无
 ********************************************************************************************/
-u32 CAN_GetESR1Status(u8 instance,U32 Mask)
+uint32_t CAN_GetESR1Status(uint8_t instance,uint32_t Mask)
 {
 	DEV_ASSERT(instance < CAN_INSTANCE_COUNT);
 	CAN_Type * base = g_flexcanBase[instance];
@@ -101,7 +101,7 @@ u32 CAN_GetESR1Status(u8 instance,U32 Mask)
 **入口参数:     无
 **返回参数:     无
 ********************************************************************************************/
-void FlyCAN_Transmit(U32 CanEnum,CanTxMsg *CAN_Msg)
+void FlyCAN_Transmit(uint32_t CanEnum,CanTxMsg *CAN_Msg)
 {
 	FlexCAN_MSG_Type LPC_CANTxMsg;
 	
@@ -233,7 +233,7 @@ void FlexCAN2PinInit(void)
 ********************************************************************************************/
 static inline void FlexCAN0RxFifoInit(void)
 {
-	u32 idfilter[]={0};
+	uint32_t idfilter[]={0};
 	flexcan_id_table_t table={
 		 .isRemoteFrame=false,      /*!< Remote frame*/
     .isExtendedFrame=false,    /*!< Extended frame*/
@@ -251,7 +251,7 @@ static inline void FlexCAN0RxFifoInit(void)
 ********************************************************************************************/
 static inline void FlexCAN1RxFifoInit(void)
 {
-	u32 idfilter[]={0};
+	uint32_t idfilter[]={0};
 	flexcan_id_table_t table={
 		 .isRemoteFrame=false,      /*!< Remote frame*/
     .isExtendedFrame=false,    /*!< Extended frame*/
@@ -268,7 +268,7 @@ static inline void FlexCAN1RxFifoInit(void)
 ********************************************************************************************/
 static inline void FlexCAN2RxFifoInit(void)
 {
-	u32 idfilter[]={0};
+	uint32_t idfilter[]={0};
 	flexcan_id_table_t table={
 		 .isRemoteFrame=false,      /*!< Remote frame*/
     .isExtendedFrame=false,    /*!< Extended frame*/
@@ -296,8 +296,8 @@ static  void (CAN0_DMACALLBACK)(void *parameter, edma_chn_status_t status)
 									RxData.StdId = (CANRXbuffer[1]) >> CAN_ID_STD_SHIFT;
 								}
 								RxData.DLC=(CANRXbuffer[0]>>16)&0xf; 
-								FlexcanSwapBytesInWord(CANRXbuffer[2], *((u32*)RxData.Data));
-								FlexcanSwapBytesInWord(CANRXbuffer[3], *((u32*)&RxData.Data[4]));
+								FlexcanSwapBytesInWord(CANRXbuffer[2], *((uint32_t*)RxData.Data));
+								FlexcanSwapBytesInWord(CANRXbuffer[3], *((uint32_t*)&RxData.Data[4]));
 								CanRxFifo_Put_One(RxData);	
 }
 
@@ -318,8 +318,8 @@ static  void (CAN1_DMACALLBACK)(void *parameter, edma_chn_status_t status)
 									RxData.StdId = (CAN1RXbuffer[1]) >> CAN_ID_STD_SHIFT;
 								}
 								RxData.DLC=(CAN1RXbuffer[0]>>16)&0xf; 
-								FlexcanSwapBytesInWord(CAN1RXbuffer[2], *((u32*)RxData.Data));
-								FlexcanSwapBytesInWord(CAN1RXbuffer[3], *((u32*)&RxData.Data[4]));
+								FlexcanSwapBytesInWord(CAN1RXbuffer[2], *((uint32_t*)RxData.Data));
+								FlexcanSwapBytesInWord(CAN1RXbuffer[3], *((uint32_t*)&RxData.Data[4]));
 								Can1RxFifo_Put_One(RxData);					
 }
 
@@ -340,8 +340,8 @@ static  void (CAN2_DMACALLBACK)(void *parameter, edma_chn_status_t status)
 									RxData.StdId = (CAN2RXbuffer[1]) >> CAN_ID_STD_SHIFT;
 								}
 								RxData.DLC=(CAN2RXbuffer[0]>>16)&0xf; 
-								FlexcanSwapBytesInWord(CAN2RXbuffer[2], *((u32*)RxData.Data));
-								FlexcanSwapBytesInWord(CAN2RXbuffer[3], *((u32*)&RxData.Data[4]));
+								FlexcanSwapBytesInWord(CAN2RXbuffer[2], *((uint32_t*)RxData.Data));
+								FlexcanSwapBytesInWord(CAN2RXbuffer[3], *((uint32_t*)&RxData.Data[4]));
 								Can2RxFifo_Put_One(RxData);					
 }
 
@@ -351,9 +351,9 @@ static  void (CAN2_DMACALLBACK)(void *parameter, edma_chn_status_t status)
 **入口参数:     无
 **返回参数:     无
 ********************************************************************************************/
-void FlyCAN_Init(U32 CanEnum,U32 baudrate)
+void FlyCAN_Init(uint32_t CanEnum,uint32_t baudrate)
 {
-	u32 Tq;
+	uint32_t Tq;
 	
 	flexcan_state_t state;
 	
@@ -461,7 +461,7 @@ void FlyCAN_Init(U32 CanEnum,U32 baudrate)
 **入口参数:     无
 **返回参数:     无
 ********************************************************************************************/
-void FlyCAN_DeInit(U32 CanEnum)
+void FlyCAN_DeInit(uint32_t CanEnum)
 {
 		FLEXCAN_DRV_Deinit(CanEnum);
 }

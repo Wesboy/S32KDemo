@@ -104,9 +104,9 @@ typedef enum
 	GPIO_INVALID,
 } LPGPIO_PinType;
 void IO_Write(LPGPIO_PinType IOEnum,bool status);
-BOOL IO_Read(unsigned int IOEnum);
-BOOL IO_Read_Pull_Down(unsigned int IOEnum);
-BOOL IO_Read_No_Pull(unsigned int IOEnum);
+bool IO_Read(unsigned int IOEnum);
+bool IO_Read_Pull_Down(unsigned int IOEnum);
+bool IO_Read_No_Pull(unsigned int IOEnum);
 
 #endif
 

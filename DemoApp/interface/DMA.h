@@ -11,7 +11,7 @@
 void DMA_Init(void);
 void DMA_DeInit(void) ;
 
-status_t DMA__ChannelInit(u8 instance ,edma_chn_state_t *edmaChannelState,
+status_t DMA__ChannelInit(uint8_t instance ,edma_chn_state_t *edmaChannelState,
                               const edma_channel_config_t *edmaChannelConfig,bool enableInt);
 status_t DMA_ConfigSingleTransfer(uint8_t virtualChannel,
 																						edma_transfer_type_t type,

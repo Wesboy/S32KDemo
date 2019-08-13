@@ -47,7 +47,7 @@ void i2cmasterCallback(i2c_master_event_t event,void *data)
 **  功能： 
 ***	备注： 
 ******************************************************************/
-void I2CMasterInit(u32 baud)
+void I2CMasterInit(uint32_t baud)
 {
 		/*串口时钟开启*/
 		module_clk_config_t module_clk_config;
@@ -111,7 +111,7 @@ void I2CMasterDeInit(void)
 **  功能： 获取I2C当前状态
 ***	备注： 
 ******************************************************************/
-u32 I2C_GetMasterState()
+uint32_t I2C_GetMasterState()
 {
 	return lpi2c_master_state.status;
 }
@@ -120,7 +120,7 @@ u32 I2C_GetMasterState()
 **  功能： 传输I2C数据功能的底层接口函数
 ***	备注： 用slaveAddress bit0区分读写
 ******************************************************************/
-u32 I2C_TransferBuff(u8 slaveAddress,u8 *buffer,u8 len)
+uint32_t I2C_TransferBuff(uint8_t slaveAddress,uint8_t *buffer,uint8_t len)
 {
 	if(lpi2c_master_state.status==STATUS_BUSY)
 		return STATUS_BUSY;
@@ -137,7 +137,7 @@ u32 I2C_TransferBuff(u8 slaveAddress,u8 *buffer,u8 len)
 **  功能： I2C写数据
 ***	备注： adder为8位地址
 ******************************************************************/
-void Interface_I2C_Write(u8 adder,u8 *buffer,u8 len)
+void Interface_I2C_Write(uint8_t adder,uint8_t *buffer,uint8_t len)
 {
 	while(STATUS_BUSY==I2C_GetMasterState());
 	I2C_TransferBuff(adder,buffer,len);	
@@ -147,7 +147,7 @@ void Interface_I2C_Write(u8 adder,u8 *buffer,u8 len)
 **  功能： I2C写数据
 ***	备注： adder为8位
 ******************************************************************/
-bool Interface_I2C_Read(u8 adder,u8 *buffer,u8 len)
+bool Interface_I2C_Read(uint8_t adder,uint8_t *buffer,uint8_t len)
 {
 	while(STATUS_BUSY==I2C_GetMasterState());//等待空闲
 
@@ -162,7 +162,7 @@ bool Interface_I2C_Read(u8 adder,u8 *buffer,u8 len)
 **  功能： I2C写数据
 ***	备注： adder为8位地址，SlaveAddr寄存器地址
 ******************************************************************/
-bool Interface_I2C_SlaveAddr_Read(u8 adder,u8 SlaveAddr,u8 *buffer,u8 len)
+bool Interface_I2C_SlaveAddr_Read(uint8_t adder,uint8_t SlaveAddr,uint8_t *buffer,uint8_t len)
 {
 	while(STATUS_BUSY==I2C_GetMasterState());
 	I2C_TransferBuff(adder,&adder,1);

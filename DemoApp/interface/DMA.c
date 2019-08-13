@@ -35,7 +35,7 @@ void DMA_DeInit(void)
  *
  * Implements    : EDMA_DRV_ChannelInit_Activity
  *END**************************************************************************/
-status_t DMA__ChannelInit(u8 instance, edma_chn_state_t *edmaChannelState,
+status_t DMA__ChannelInit(uint8_t instance, edma_chn_state_t *edmaChannelState,
 						  const edma_channel_config_t *edmaChannelConfig, bool enableInt)
 {
 	EDMA_DRV_ChannelInit(edmaChannelState, edmaChannelConfig);

@@ -55,11 +55,11 @@ static void LPGPIO_PinInit(LPGPIO_PinType pin, port_data_direction_t dir, port_p
 **入口参数:
 **返回参数:
 ******************************************************************************/
-BOOL IO_Read(unsigned int IOEnum)
+bool IO_Read(unsigned int IOEnum)
 {
 
 	LPGPIO_PinType Pin;
-	BOOL bRes = TRUE;
+	bool bRes = TRUE;
 	pins_channel_type_t bStatus = FALSE;
 	Pin = (LPGPIO_PinType)IOEnum;
 
@@ -83,11 +83,11 @@ BOOL IO_Read(unsigned int IOEnum)
 		return TRUE;
 }
 
-BOOL IO_Read_No_Pull(unsigned int IOEnum)
+bool IO_Read_No_Pull(unsigned int IOEnum)
 {
 
 	LPGPIO_PinType Pin;
-	BOOL bRes = TRUE;
+	bool bRes = TRUE;
 	pins_channel_type_t bStatus = FALSE;
 	Pin = (LPGPIO_PinType)IOEnum;
 
@@ -103,11 +103,11 @@ BOOL IO_Read_No_Pull(unsigned int IOEnum)
 		return TRUE;
 }
 
-BOOL IO_Read_Pull_Down(unsigned int IOEnum)
+bool IO_Read_Pull_Down(unsigned int IOEnum)
 {
 
 	LPGPIO_PinType Pin;
-	BOOL bRes = TRUE;
+	bool bRes = TRUE;
 	pins_channel_type_t bStatus = FALSE;
 	Pin = (LPGPIO_PinType)IOEnum;
 
@@ -132,7 +132,7 @@ BOOL IO_Read_Pull_Down(unsigned int IOEnum)
 void IO_Write(LPGPIO_PinType IOEnum, bool status)
 {
 	LPGPIO_PinType Pin;
-	BOOL bRes = TRUE;
+	bool bRes = TRUE;
 	Pin = (LPGPIO_PinType)IOEnum;
 
 	if (bRes && (Pin < GPIO_END))

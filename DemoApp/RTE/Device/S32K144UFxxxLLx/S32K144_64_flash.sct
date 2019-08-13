@@ -40,7 +40,7 @@
 **
 ** ###################################################################
 */
-#include "../../../System/inc/MemoryConfig.h"
+#include "../../../Startup/MemoryConfig.h"
 #if (defined(__ram_vector_table__))
   #define __ram_vector_table_size__    0x00000400
   

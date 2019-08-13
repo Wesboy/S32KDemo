@@ -9,7 +9,7 @@
 **返回参数:
 **说明 中断时间为 Count*1000ms    
 ******************************************************************************/
-void RTCInit(U16 Count)
+void RTCInit(uint16_t Count)
 {
 		rtc_init_config_t rtc_init_config;
 		{

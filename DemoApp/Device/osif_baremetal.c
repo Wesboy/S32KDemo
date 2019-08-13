@@ -92,12 +92,6 @@ static inline uint32_t osif_GetCurrentTickCount(void)
 
 #if FEATURE_OSIF_USE_SYSTICK
 
-//void SysTick_Handler(void);
-
-//void SysTick_Handler(void)
-//{
-//    osif_Tick();
-//}
 
  void osif_UpdateTickConfig(void)
 {

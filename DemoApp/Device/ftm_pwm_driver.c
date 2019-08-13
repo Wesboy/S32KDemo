@@ -662,9 +662,9 @@ void FTM_PWM_DRV_IrqHandler(uint32_t instance,
         FTM_DRV_SetAllChnSoftwareCtrlCmd(ftmBase, 0x00U);
         FTM_DRV_SetAllChnSoftwareCtrlVal(ftmBase, 0x00U);
         /* 7. Write FTM_SWOCTRL with the desired value again */
-        uint8_t u8chnOutCtrlVal = (uint8_t)(chnOutCtrlVal & 0xFFu);
-        FTM_DRV_SetAllChnSoftwareCtrlCmd(ftmBase, u8chnOutCtrlVal);
-        FTM_DRV_SetAllChnSoftwareCtrlVal(ftmBase, u8chnOutCtrlVal);
+        uint8_t uint8_tchnOutCtrlVal = (uint8_t)(chnOutCtrlVal & 0xFFu);
+        FTM_DRV_SetAllChnSoftwareCtrlCmd(ftmBase, uint8_tchnOutCtrlVal);
+        FTM_DRV_SetAllChnSoftwareCtrlVal(ftmBase, uint8_tchnOutCtrlVal);
         /* 8. Clear the FTM_OUTMASK bits that were set in step 2 */
         FTM_DRV_SetOutmaskReg(ftmBase, 0x00U);
         /* 9. Clear the fault variable that was set in step 1 when the fault condition was originally detected */

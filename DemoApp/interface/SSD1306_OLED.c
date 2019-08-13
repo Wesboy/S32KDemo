@@ -38,13 +38,11 @@
 #include "SSD1306_flash.h"
 
 #include "interface.h"
-#include "ConfigFile.h"
 #include <stdio.h>
 #include <string.h>
-#include "config.h"
 #include "codetab.h"
 
-extern void DelayUs(u8 time);
+extern void DelayUs(uint8_t time);
 
 void OLED_WrDat(unsigned char dat) //写数据
 {
@@ -192,9 +190,9 @@ void OLED_Init(void)
 	OLED_CS_Set();
 }
 
-void LcdDisChar(u8 xPos, u8 yPos, u8 zknum, u8 *zkzip)
+void LcdDisChar(uint8_t xPos, uint8_t yPos, uint8_t zknum, uint8_t *zkzip)
 {
-	u8 i;
+	uint8_t i;
 	OLED_SetPos(xPos, yPos);
 	for (i = 0; i < zknum; i++)
 	{
@@ -207,12 +205,12 @@ void LcdDisChar(u8 xPos, u8 yPos, u8 zknum, u8 *zkzip)
 	}
 }
 
-u8 LcdDisplay_HZ(u8 xPos, u8 yPos, u8 *GBCodeptr)
+uint8_t LcdDisplay_HZ(uint8_t xPos, uint8_t yPos, uint8_t *GBCodeptr)
 {
-	u8 msb, lsb, zknum;
-	u8 zkzip[32]; //读取字库数据的缓存区
-	u32 offset;   //字库地址索引
-	u32 i;
+	uint8_t msb, lsb, zknum;
+	uint8_t zkzip[32]; //读取字库数据的缓存区
+	uint32_t offset;   //字库地址索引
+	uint32_t i;
 
 	OLED_CS_Clr();
 	if (xPos >= Max_Column || yPos >= Max_Row)
@@ -246,10 +244,10 @@ u8 LcdDisplay_HZ(u8 xPos, u8 yPos, u8 *GBCodeptr)
 	return 1;
 }
 
-u8 LcdDisplay_ASCII_MAP(u8 *GBCodeptr)
+uint8_t LcdDisplay_ASCII_MAP(uint8_t *GBCodeptr)
 {
-	u8 data;
-	u32 i;
+	uint8_t data;
+	uint32_t i;
 	data = *GBCodeptr;
 	for (i = 0; i < 8; i++)
 	{
@@ -258,9 +256,9 @@ u8 LcdDisplay_ASCII_MAP(u8 *GBCodeptr)
 	return 1;
 }
 /*
-void LcdDisplay_Chinese(u8 xPos,u8 yPos,u8 *GBCodeptr)
+void LcdDisplay_Chinese(uint8_t xPos,uint8_t yPos,uint8_t *GBCodeptr)
 {
-	u8 i,len;
+	uint8_t i,len;
 	len =  strlen((const char*)GBCodeptr);
 	for(i=0;i<len;i++)	
 	{
@@ -269,9 +267,9 @@ void LcdDisplay_Chinese(u8 xPos,u8 yPos,u8 *GBCodeptr)
 	}
 }
 
-void LcdDisplay_char(u8 xPos,u8 yPos,u8 *GBCodeptr)
+void LcdDisplay_char(uint8_t xPos,uint8_t yPos,uint8_t *GBCodeptr)
 {
-  u8 i, len;
+  uint8_t i, len;
 	len =  strlen((const char*)GBCodeptr);
   for(i=0;i<len;i++)	
 	{
@@ -279,9 +277,9 @@ void LcdDisplay_char(u8 xPos,u8 yPos,u8 *GBCodeptr)
 	}
 }
 */
-void LcdDisplay_ASCII(u8 yPos, u8 *GBCodeptr)
+void LcdDisplay_ASCII(uint8_t yPos, uint8_t *GBCodeptr)
 {
-	u8 i, len;
+	uint8_t i, len;
 	len = strlen((const char *)GBCodeptr);
 	OLED_CS_Clr();
 	OLED_SetPos(0, yPos);
@@ -332,7 +330,7 @@ void OLED_BMP(unsigned char x0, unsigned char y0, unsigned char x1, unsigned cha
 	OLED_CS_Set();
 }
 
-void OLE_Display_Char(u8 *GBCodeptr0, u8 *GBCodeptr1, u8 *GBCodeptr2)
+void OLE_Display_Char(uint8_t *GBCodeptr0, uint8_t *GBCodeptr1, uint8_t *GBCodeptr2)
 {
 	//OLED_CLS();
 	OLED_Line_Fill(7, 0x00);

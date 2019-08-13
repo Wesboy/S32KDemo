@@ -69,12 +69,12 @@ void OLED_Fill(unsigned char bmp_dat);//全屏填充
 void OLED_CLS(void);//清屏
 void OLED_Init(void);//初始化
 
-void LcdDisplay_ASCII(u8 yPos,u8 *GBCodeptr);
-void LcdDisChar(u8 xPos,u8 yPos,u8 zknum,u8 *zkzip);
-u8 LcdDisplay_HZ(u8 xPos,u8 yPos,u8 *GBCodeptr);
-void LcdDisplay_Chinese(u8 xPos,u8 yPos,u8 *GBCodeptr);
-void LcdDisplay_char(u8 xPos,u8 yPos,u8 *GBCodeptr);
+void LcdDisplay_ASCII(uint8_t yPos,uint8_t *GBCodeptr);
+void LcdDisChar(uint8_t xPos,uint8_t yPos,uint8_t zknum,uint8_t *zkzip);
+uint8_t LcdDisplay_HZ(uint8_t xPos,uint8_t yPos,uint8_t *GBCodeptr);
+void LcdDisplay_Chinese(uint8_t xPos,uint8_t yPos,uint8_t *GBCodeptr);
+void LcdDisplay_char(uint8_t xPos,uint8_t yPos,uint8_t *GBCodeptr);
 void OLED_BMP(unsigned char x0, unsigned char y0, unsigned char x1, unsigned char y1,unsigned char BMP[]);
 void OLED_BMP1(unsigned char x0, unsigned char y0, unsigned char x1, unsigned char y1,unsigned char BMP[]);
-void OLE_Display_Char(u8 *GBCodeptr0,u8 *GBCodeptr1,u8 *GBCodeptr2);
+void OLE_Display_Char(uint8_t *GBCodeptr0,uint8_t *GBCodeptr1,uint8_t *GBCodeptr2);
 #endif

@@ -10,10 +10,10 @@ volatile uint32_t ADC1ConvertBuffr[ADC1ConvertBuffrtSize] __attribute__((aligned
 **** 函数功能： 配置back to back模式的寄存器组
 **** 备注：  PDB只使用通道0，不能超过8个ADC通道转换，
 ****************************************************************/
-static inline void ADC_ConfigChan(u32 adcVa)
+static inline void ADC_ConfigChan(uint32_t adcVa)
 {
-	u8 R = adcVa >> 16;
-	u8 instance = (adcVa >> 8) & 0xff;
+	uint8_t R = adcVa >> 16;
+	uint8_t instance = (adcVa >> 8) & 0xff;
 	adc_chan_config_t adConv1_ChnConfig1 = {.interruptEnable = false, .channel = (adc_inputchannel_t)(adcVa & 0xff)};
 	if (instance == 0)
 	{

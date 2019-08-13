@@ -9,15 +9,15 @@
 
 static lpspi_state_t lpspistate;
 
-u8 rxBuff[30];
+uint8_t rxBuff[30];
 
 #define SPIRxFifoCount 1000
 #define SPITxFifoCount 1000
 
-NEW_FIFO(SPI1RxFifo, SPIRxFifoCount, u8, u16);
-NEW_FIFO(SPI1TxFifo, SPIRxFifoCount, u8, u16);
-NEW_FIFO(SPI2RxFifo, SPIRxFifoCount, u8, u16);
-NEW_FIFO(SPI2TxFifo, SPIRxFifoCount, u8, u16);
+NEW_FIFO(SPI1RxFifo, SPIRxFifoCount, uint8_t, uint16_t);
+NEW_FIFO(SPI1TxFifo, SPIRxFifoCount, uint8_t, uint16_t);
+NEW_FIFO(SPI2RxFifo, SPIRxFifoCount, uint8_t, uint16_t);
+NEW_FIFO(SPI2TxFifo, SPIRxFifoCount, uint8_t, uint16_t);
 
 void SPI1RxFifoMsg(uint8_t data)
 {
@@ -387,7 +387,7 @@ uint32_t LPSPI2_receive_32bits(void)
 
 void LPSPI2_Write(const uint8_t *sendBuffer, uint16_t transferByteCount)
 {
-	u8 count;
+	uint8_t count;
 	for (count = 0; count < transferByteCount; count++)
 	{
 		LPSPI2_transmit_8bits(sendBuffer[count]);
@@ -396,7 +396,7 @@ void LPSPI2_Write(const uint8_t *sendBuffer, uint16_t transferByteCount)
 
 void LPSPI1_Write(const uint8_t *sendBuffer, uint16_t transferByteCount)
 {
-	u8 count;
+	uint8_t count;
 	for (count = 0; count < transferByteCount; count++)
 	{
 		LPSPI1_transmit_8bits(sendBuffer[count]);
@@ -405,7 +405,7 @@ void LPSPI1_Write(const uint8_t *sendBuffer, uint16_t transferByteCount)
 
 void LPSPI1_Write_16bit(const uint16_t *sendBuffer, uint16_t transferByteCount)
 {
-	u8 count;
+	uint8_t count;
 	for (count = 0; count < transferByteCount; count++)
 	{
 		LPSPI1_transmit_16bits(sendBuffer[count]);
@@ -414,7 +414,7 @@ void LPSPI1_Write_16bit(const uint16_t *sendBuffer, uint16_t transferByteCount)
 
 void LPSPI2_WriteRead_32bit(uint32_t *RecvBuffer, const uint32_t sendBuffer, uint16_t transferCount)
 {
-	u8 count;
+	uint8_t count;
 	for (count = 0; count < transferCount; count++)
 	{
 		LPSPI2_transmit_32bits(sendBuffer);

@@ -2,8 +2,6 @@
 #define __CAN_INTERNAL_H__
 #include <stdio.h>
 #include <stdbool.h>
-#include <lpc_types.h>
-#include "fly_types.h"
 
 #define FlexCAN0   0
 #define FlexCAN1   1
@@ -73,8 +71,6 @@ void Can1ProtocolRxMsgProc(CanRxMsg *pCAN_RxData);
 void CanProtocolInit(void);
 void CanProtocolDeInit(void);
 void CanProtocolProc(void);
-void CanProtocolEventSetProc(event_t evt, uint32_t param, uint8_t *p, uint16_t len);
-void CanProtocolEventGetProc(event_t evt, uint32_t* param, uint8_t *p, uint16_t len);
 void CanProc(void);
 void CanRxFifo_Put_One(CanRxMsg RxData);
 void Can1RxFifo_Put_One(CanRxMsg RxData);

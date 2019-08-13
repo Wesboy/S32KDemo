@@ -176,7 +176,7 @@ NOTES:
 		}\
 		\
 		/* Put one data in FIFO outside ISR. */\
-		BOOL FIFO_##__NAME##_PutOne(__TYPE Data)\
+		bool FIFO_##__NAME##_PutOne(__TYPE Data)\
 		{\
 			__SIZE_t DataCount;\
 			_DI();\
@@ -201,7 +201,7 @@ NOTES:
 		}\
 		\
 		/* Get one data from FIFO outside ISR. */\
-		BOOL FIFO_##__NAME##_GetOne(__TYPE *pData)\
+		bool FIFO_##__NAME##_GetOne(__TYPE *pData)\
 		{\
 			_DI();\
 			if (FIFO_##__NAME##Tail != FIFO_##__NAME##Head)\
@@ -218,7 +218,7 @@ NOTES:
 			return FALSE;\
 		}\
 		/* take a look the data with Index*/\
-		BOOL FIFO_##__NAME##_PeekOne(__TYPE *pData, __SIZE_t Index)\
+		bool FIFO_##__NAME##_PeekOne(__TYPE *pData, __SIZE_t Index)\
 		{\
 			if (Index < FIFO_##__NAME##_GetCount())\
 			{\
@@ -249,7 +249,7 @@ NOTES:
 			_EI();\
 		}\
 		/* Put a string of data in FIFO */\
-		BOOL FIFO_##__NAME##_PutStr(__TYPE *pData, __SIZE_t Num)\
+		bool FIFO_##__NAME##_PutStr(__TYPE *pData, __SIZE_t Num)\
 		{\
 			if ((Num > FIFO_##__NAME##_GetIdelCount()) || (pData == NULL))\
 				return FALSE;\
@@ -266,7 +266,7 @@ NOTES:
 			}\
 			return TRUE;\
 		}\
-		BOOL FIFO_##__NAME##_GetStr(__TYPE *pData, __SIZE_t Num)\
+		bool FIFO_##__NAME##_GetStr(__TYPE *pData, __SIZE_t Num)\
 		{\
 			if ((Num > FIFO_##__NAME##_GetCount()) || (pData == NULL))\
 				return FALSE;\
@@ -283,7 +283,7 @@ NOTES:
 			}\
 			return TRUE;\
 		}\
-		BOOL FIFO_##__NAME##_IsEmpty(void)\
+		bool FIFO_##__NAME##_IsEmpty(void)\
 		{\
 			if (FIFO_##__NAME##Tail == FIFO_##__NAME##Head) return TRUE;\
 			else return FALSE;\
@@ -300,7 +300,7 @@ NOTES:
 				}\
 			}\
 		}\
-		extern __inline BOOL FIFO_##__NAME##_GetOneInt(__TYPE *pData)\
+		extern __inline bool FIFO_##__NAME##_GetOneInt(__TYPE *pData)\
 		{\
 			if (FIFO_##__NAME##Tail == FIFO_##__NAME##Head) return FALSE;\
 			*pData = *FIFO_##__NAME##Tail; \
@@ -319,13 +319,13 @@ NOTES:
 		extern __TYPE   FIFO_##__NAME##Buffer[(__SIZE)];\
 		extern __TYPE  *FIFO_##__NAME##Tail;\
 		extern __TYPE  *FIFO_##__NAME##Head;\
-		extern BOOL FIFO_##__NAME##_PutOne(__TYPE Data);\
-		extern BOOL FIFO_##__NAME##_GetOne(__TYPE *pData);\
-		extern BOOL FIFO_##__NAME##_PeekOne(__TYPE *pData, __SIZE_t Index);\
+		extern bool FIFO_##__NAME##_PutOne(__TYPE Data);\
+		extern bool FIFO_##__NAME##_GetOne(__TYPE *pData);\
+		extern bool FIFO_##__NAME##_PeekOne(__TYPE *pData, __SIZE_t Index);\
 		extern void FIFO_##__NAME##_DumpData(__SIZE_t Num);\
-		extern BOOL FIFO_##__NAME##_PutStr(__TYPE *pData, __SIZE_t Num);\
-		extern BOOL FIFO_##__NAME##_GetStr(__TYPE *pData, __SIZE_t Num);\
-		extern BOOL FIFO_##__NAME##_IsEmpty(void);\
+		extern bool FIFO_##__NAME##_PutStr(__TYPE *pData, __SIZE_t Num);\
+		extern bool FIFO_##__NAME##_GetStr(__TYPE *pData, __SIZE_t Num);\
+		extern bool FIFO_##__NAME##_IsEmpty(void);\
 		extern __SIZE_t FIFO_##__NAME##_GetCount(void);\
 		extern __SIZE_t FIFO_##__NAME##_GetIdelCount(void);\
 		extern __inline void FIFO_##__NAME##_PutOneInt(__TYPE Data)\
@@ -340,7 +340,7 @@ NOTES:
 				}\
 			}\
 		}\
-		extern __inline BOOL FIFO_##__NAME##_GetOneInt(__TYPE *pData)\
+		extern __inline bool FIFO_##__NAME##_GetOneInt(__TYPE *pData)\
 		{\
 			if (FIFO_##__NAME##Tail == FIFO_##__NAME##Head) return FALSE;\
 			*pData = *FIFO_##__NAME##Tail; \

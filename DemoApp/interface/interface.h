@@ -1,13 +1,9 @@
 #ifndef __INTERFACE__H__
 #define __INTERFACE__H__
-#include "fly_types.h"
 #include "stdio.h"
 #include "string.h"
 #include "stdint.h"
-#include "ConfigFile.h"
-#include "misc.h"
 #include "fifo.h"
-#include "canInternal.h"
 #include "FTM_InputCapture.h"
 //#include "codetab.h"
 
@@ -47,10 +43,13 @@
 #include "systick.h"
 #include "FTM_PWM.h"
 #include "ADC.h"
+#include "CAN.h"
 #include "I2C.h"
 #include "UART.h"
 
 #define ADDR7BIT(x) ((x) >> 1)
+/* Number of elements in an array */
+#define NELEMENTS(array) (sizeof(array) / sizeof(array[0]))
 
 typedef enum
 {
@@ -58,12 +57,20 @@ typedef enum
 	RESETUP,
 	WAKEUP
 } ePowerStatus;
+
+typedef enum
+{
+  FALSE = 0,
+  TRUE = !FALSE
+}Bool;
+typedef Bool BOOL;
+
 typedef struct CHIP_INFO
 {
-	U32 IIcCount;
+	uint32_t IIcCount;
 	uint32_t ResetStatus;
 	ePowerStatus chipPowerStatus;
-	BOOL bForbidCanWakeup;
+	bool bForbidCanWakeup;
 
 	uint8_t AccStatus;
 	uint32_t Timer1Count;
@@ -74,16 +81,16 @@ typedef struct CHIP_INFO
 ////////////////////////////////////////////////////////////////////////////////////////
 typedef struct
 {
-	U32 FirstPowerOn1;
-	U32 FirstPowerOn2;
-	U32 FirstPowerOn3;
+	uint32_t FirstPowerOn1;
+	uint32_t FirstPowerOn2;
+	uint32_t FirstPowerOn3;
 	uint32_t WakeUpSrc;
 
 	uint32_t batteryvoltagevalueflag;
 	uint16_t batteryvoltagevalue;
 	uint32_t havepowerdownAndroid;
 
-	BOOL bOpenLcdStatus;
+	bool bOpenLcdStatus;
 
 	uint32_t asyncreset;
 	uint32_t PowerManage_StandbyMode;
@@ -188,14 +195,14 @@ extern parameter_info_t *paramInfo;
 
 void _DI(void);
 void _EI(void);
-u32 Interface_Get_GPREG(u8 No);
+uint32_t Interface_Get_GPREG(uint8_t No);
 void FlySystemProc(void);
 void chipDeInit(void);
 void IntoDeepSleep(void);
 void CanInit(void);
 void carBusInit(void);
 void CanIpcEventRegister(void);
-u32 CAN_GetESR1Status(u8 Num, U32 Mask);
+uint32_t CAN_GetESR1Status(uint8_t Num, uint32_t Mask);
 void carBusDeInit(void);
 void CanDeInit(void);
 void AllIOConfigInputForSleep(void);

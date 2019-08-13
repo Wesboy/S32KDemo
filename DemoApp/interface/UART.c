@@ -5,7 +5,7 @@
 
 #define DebugTxFifoCount 2048
 
-NEW_FIFO(DebugTxFifo, DebugTxFifoCount, u8, u16);
+NEW_FIFO(DebugTxFifo, DebugTxFifoCount, uint8_t, uint16_t);
 
 typedef void (*UART_handler)(uint8_t data);
 
@@ -61,7 +61,7 @@ static inline void UartPin_Init(LPGPIO_PinType Pin)
 **入口参数:
 **返回参数:
 ******************************************************************************/
-static void LpuartInit(unsigned char uart_Nu, U32 BAUD, LPGPIO_PinType txPort, LPGPIO_PinType RxPort, UART_handler Handler)
+static void LpuartInit(unsigned char uart_Nu, uint32_t BAUD, LPGPIO_PinType txPort, LPGPIO_PinType RxPort, UART_handler Handler)
 {
 
 	IRQn_Type LPIrq[] = {LPUART0_RxTx_IRQn, LPUART1_RxTx_IRQn, LPUART2_RxTx_IRQn};
@@ -111,7 +111,7 @@ static void LpuartDeInit(unsigned char uart_Nu)
 **  功能： 
 ***	备注： 
 ******************************************************************/
-static void Debug_Handler(u8 data)
+static void Debug_Handler(uint8_t data)
 {
 	//收到直接发
 	lpuart_Putchar(LPUART0, data);
@@ -130,7 +130,7 @@ void Debug_Uart(void)
 #endif
 }
 
-static void Uart2_Handler(u8 data)
+static void Uart2_Handler(uint8_t data)
 {
 	//	PutAndroidCommRxFifoMsg(data);
 }
@@ -188,9 +188,9 @@ void CurrentDetectComIODeInit(void)
 **  功能： 
 ***	备注： 
 ******************************************************************/
-void LPUARTx_IRQHandler(u8 No)
+void LPUARTx_IRQHandler(uint8_t No)
 {
-	U8 receive;
+	uint8_t receive;
 	LPUART_Type *LPUARTx[] = LPUART_BASE_PTRS;
 	if (No > 2)
 		return;
@@ -288,10 +288,10 @@ int fputc(int ch, FILE *f)
 ******************************************************************/
 void PutAllDebugInfor()
 {
-	u16 Len = FIFO_GET_COUNT(DebugTxFifo);
+	uint16_t Len = FIFO_GET_COUNT(DebugTxFifo);
 	for (int i = 0; i < Len; i++)
 	{
-		u8 data;
+		uint8_t data;
 		FIFO_GET_ONE(DebugTxFifo, &data);
 		while ((D_LPUARTx->STAT & LPUART_STAT_TDRE_MASK) == 0)
 			;
@@ -312,7 +312,7 @@ void DebugPro(void)
 	}
 	if ((D_LPUARTx->STAT & LPUART_STAT_TDRE_MASK) && FIFO_GET_COUNT(DebugTxFifo))
 	{
-		u8 data;
+		uint8_t data;
 		FIFO_GET_ONE(DebugTxFifo, &data);
 		D_LPUARTx->DATA = data;
 	}
@@ -320,7 +320,7 @@ void DebugPro(void)
 
 	//	 if((LPUART2->STAT & LPUART_STAT_TDRE_MASK)&&FIFO_GET_COUNT(CurrentDetectComTxFifo))
 	//	 {
-	//		 u8 data2;
+	//		 uint8_t data2;
 	//		// FIFO_GET_ONE(CurrentDetectComTxFifo, &data2);
 	//		 LPUART2->DATA=data2;
 	//	 }

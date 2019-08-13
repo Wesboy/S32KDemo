@@ -337,7 +337,7 @@
               <MiscControls> -DCAR_SEL=CAR_NORMAL -DDEBUGMSG=1  -DAUDIO_CHIP=SAF775D_AUDIO</MiscControls>
               <Define></Define>
               <Undefine></Undefine>
-              <IncludePath>.\Device;.\interface;.\Startup;.\Startup\S32K144UFxxxLLx;.\Startup\Include;.\System\inc;.\Driver;.\Diagnose</IncludePath>
+              <IncludePath>.\Device;.\interface;.\Startup;.\Startup\S32K144UFxxxLLx;.\Startup\Include</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -387,19 +387,9 @@
               <FilePath>.\interface\interface.c</FilePath>
             </File>
             <File>
-              <FileName>interface.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\interface\interface.h</FilePath>
-            </File>
-            <File>
               <FileName>UART.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\interface\UART.c</FilePath>
-            </File>
-            <File>
-              <FileName>UART.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\interface\UART.h</FilePath>
             </File>
             <File>
               <FileName>I2C.c</FileName>
@@ -407,24 +397,9 @@
               <FilePath>.\interface\I2C.c</FilePath>
             </File>
             <File>
-              <FileName>I2C.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\interface\I2C.h</FilePath>
-            </File>
-            <File>
               <FileName>ADC.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\interface\ADC.c</FilePath>
-            </File>
-            <File>
-              <FileName>ADC.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\interface\ADC.h</FilePath>
-            </File>
-            <File>
-              <FileName>FTM_PWM.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\interface\FTM_PWM.h</FilePath>
             </File>
             <File>
               <FileName>FlexCAN.c</FileName>
@@ -437,19 +412,9 @@
               <FilePath>.\interface\DMA.c</FilePath>
             </File>
             <File>
-              <FileName>DMA.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\interface\DMA.h</FilePath>
-            </File>
-            <File>
               <FileName>systick.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\interface\systick.c</FilePath>
-            </File>
-            <File>
-              <FileName>systick.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\interface\systick.h</FilePath>
             </File>
             <File>
               <FileName>RTC.c</FileName>
@@ -457,29 +422,14 @@
               <FilePath>.\interface\RTC.c</FilePath>
             </File>
             <File>
-              <FileName>RTC.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\interface\RTC.h</FilePath>
-            </File>
-            <File>
               <FileName>PORT.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\interface\PORT.c</FilePath>
             </File>
             <File>
-              <FileName>PORT.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\interface\PORT.h</FilePath>
-            </File>
-            <File>
               <FileName>Watchdog.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\interface\Watchdog.c</FilePath>
-            </File>
-            <File>
-              <FileName>Watchdog.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\interface\Watchdog.h</FilePath>
             </File>
             <File>
               <FileName>SPI.c</FileName>
@@ -492,19 +442,9 @@
               <FilePath>.\interface\FTM_InputCapture.c</FilePath>
             </File>
             <File>
-              <FileName>FTM_InputCapture.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\interface\FTM_InputCapture.h</FilePath>
-            </File>
-            <File>
               <FileName>SSD1306_flash.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\interface\SSD1306_flash.c</FilePath>
-            </File>
-            <File>
-              <FileName>SSD1306_flash.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\interface\SSD1306_flash.h</FilePath>
             </File>
             <File>
               <FileName>SSD1306_OLED.c</FileName>
@@ -512,19 +452,14 @@
               <FilePath>.\interface\SSD1306_OLED.c</FilePath>
             </File>
             <File>
-              <FileName>SSD1306_OLED.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\interface\SSD1306_OLED.h</FilePath>
-            </File>
-            <File>
               <FileName>FTM_PWM.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\interface\FTM_PWM.c</FilePath>
             </File>
             <File>
-              <FileName>can.c</FileName>
+              <FileName>CAN.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\interface\can.c</FilePath>
+              <FilePath>.\interface\CAN.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -1141,19 +1076,9 @@
               <FilePath>.\interface\interface.c</FilePath>
             </File>
             <File>
-              <FileName>interface.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\interface\interface.h</FilePath>
-            </File>
-            <File>
               <FileName>UART.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\interface\UART.c</FilePath>
-            </File>
-            <File>
-              <FileName>UART.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\interface\UART.h</FilePath>
             </File>
             <File>
               <FileName>I2C.c</FileName>
@@ -1161,24 +1086,9 @@
               <FilePath>.\interface\I2C.c</FilePath>
             </File>
             <File>
-              <FileName>I2C.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\interface\I2C.h</FilePath>
-            </File>
-            <File>
               <FileName>ADC.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\interface\ADC.c</FilePath>
-            </File>
-            <File>
-              <FileName>ADC.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\interface\ADC.h</FilePath>
-            </File>
-            <File>
-              <FileName>FTM_PWM.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\interface\FTM_PWM.h</FilePath>
             </File>
             <File>
               <FileName>FlexCAN.c</FileName>
@@ -1191,19 +1101,9 @@
               <FilePath>.\interface\DMA.c</FilePath>
             </File>
             <File>
-              <FileName>DMA.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\interface\DMA.h</FilePath>
-            </File>
-            <File>
               <FileName>systick.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\interface\systick.c</FilePath>
-            </File>
-            <File>
-              <FileName>systick.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\interface\systick.h</FilePath>
             </File>
             <File>
               <FileName>RTC.c</FileName>
@@ -1211,29 +1111,14 @@
               <FilePath>.\interface\RTC.c</FilePath>
             </File>
             <File>
-              <FileName>RTC.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\interface\RTC.h</FilePath>
-            </File>
-            <File>
               <FileName>PORT.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\interface\PORT.c</FilePath>
             </File>
             <File>
-              <FileName>PORT.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\interface\PORT.h</FilePath>
-            </File>
-            <File>
               <FileName>Watchdog.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\interface\Watchdog.c</FilePath>
-            </File>
-            <File>
-              <FileName>Watchdog.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\interface\Watchdog.h</FilePath>
             </File>
             <File>
               <FileName>SPI.c</FileName>
@@ -1246,19 +1131,9 @@
               <FilePath>.\interface\FTM_InputCapture.c</FilePath>
             </File>
             <File>
-              <FileName>FTM_InputCapture.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\interface\FTM_InputCapture.h</FilePath>
-            </File>
-            <File>
               <FileName>SSD1306_flash.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\interface\SSD1306_flash.c</FilePath>
-            </File>
-            <File>
-              <FileName>SSD1306_flash.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\interface\SSD1306_flash.h</FilePath>
             </File>
             <File>
               <FileName>SSD1306_OLED.c</FileName>
@@ -1266,19 +1141,14 @@
               <FilePath>.\interface\SSD1306_OLED.c</FilePath>
             </File>
             <File>
-              <FileName>SSD1306_OLED.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\interface\SSD1306_OLED.h</FilePath>
-            </File>
-            <File>
               <FileName>FTM_PWM.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\interface\FTM_PWM.c</FilePath>
             </File>
             <File>
-              <FileName>can.c</FileName>
+              <FileName>CAN.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\interface\can.c</FilePath>
+              <FilePath>.\interface\CAN.c</FilePath>
             </File>
           </Files>
         </Group>

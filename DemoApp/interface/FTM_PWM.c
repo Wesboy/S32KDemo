@@ -175,11 +175,11 @@ void PWM1ConfigInit(void)
 		
 }
 
-void Interface_Windshield_Wiper(u8 tem) //FTM2_CH0 PWM1
+void Interface_Windshield_Wiper(uint8_t tem) //FTM2_CH0 PWM1
 {
 	uint8_t chanl[1]={0};
 	uint16_t vol[1];//
-	vol[0]=((u32)tem*FTM_DRV_GetMod(FTM2)/100);
+	vol[0]=((uint32_t)tem*FTM_DRV_GetMod(FTM2)/100);
 
 	printf("\r\n FTM2 Ch0 = %d",vol[0]);
 	FTM2->SC &=~FTM_SC_CLKS_MASK;
@@ -187,11 +187,11 @@ void Interface_Windshield_Wiper(u8 tem) //FTM2_CH0 PWM1
 	FTM2->SC |= FTM_SC_CLKS(3);	
 }
 
-void Interface_FTM2_CH1(u8 tem) //PWM2
+void Interface_FTM2_CH1(uint8_t tem) //PWM2
 {
 	uint8_t chanl[1]={1};
 	uint16_t vol[1];//
-	vol[0]=((u32)tem*FTM_DRV_GetMod(FTM2)/100);
+	vol[0]=((uint32_t)tem*FTM_DRV_GetMod(FTM2)/100);
 
 	printf("\r\n FTM2 Ch0 = %d",vol[0]);
 	FTM2->SC &=~FTM_SC_CLKS_MASK;
@@ -199,11 +199,11 @@ void Interface_FTM2_CH1(u8 tem) //PWM2
 	FTM2->SC |= FTM_SC_CLKS(3);	
 }
 
-void Interface_FTM0_CH0(u8 tem) //PWM0
+void Interface_FTM0_CH0(uint8_t tem) //PWM0
 {
 	uint8_t chanl[1]={0};
 	uint16_t vol[1];//
-	vol[0]=((u32)tem*FTM_DRV_GetMod(FTM0)/100);
+	vol[0]=((uint32_t)tem*FTM_DRV_GetMod(FTM0)/100);
 
 	printf("\r\n FTM2 Ch0 = %d",vol[0]);
 	FTM2->SC &=~FTM_SC_CLKS_MASK;
@@ -211,11 +211,11 @@ void Interface_FTM0_CH0(u8 tem) //PWM0
 	FTM2->SC |= FTM_SC_CLKS(3);	
 }
 
-void Interface_FTM1_CH0(u8 tem) //CATCH0
+void Interface_FTM1_CH0(uint8_t tem) //CATCH0
 {
 	uint8_t chanl[1]={0};
 	uint16_t vol[1];//
-	vol[0]=((u32)tem*FTM_DRV_GetMod(FTM1)/100);
+	vol[0]=((uint32_t)tem*FTM_DRV_GetMod(FTM1)/100);
 
 	printf("\r\n FTM2 Ch0 = %d",vol[0]);
 	FTM2->SC &=~FTM_SC_CLKS_MASK;
@@ -223,11 +223,11 @@ void Interface_FTM1_CH0(u8 tem) //CATCH0
 	FTM2->SC |= FTM_SC_CLKS(3);	
 }
 
-void Interface_FTM1_CH1(u8 tem) //CATCH1
+void Interface_FTM1_CH1(uint8_t tem) //CATCH1
 {
 	uint8_t chanl[1]={1};
 	uint16_t vol[1];//
-	vol[0]=((u32)tem*FTM_DRV_GetMod(FTM1)/100);
+	vol[0]=((uint32_t)tem*FTM_DRV_GetMod(FTM1)/100);
 
 	printf("\r\n FTM2 Ch0 = %d",vol[0]);
 	FTM2->SC &=~FTM_SC_CLKS_MASK;
@@ -235,11 +235,11 @@ void Interface_FTM1_CH1(u8 tem) //CATCH1
 	FTM2->SC |= FTM_SC_CLKS(3);	
 }
 
-void Interface_FTM1_CH2(u8 tem) //CATCH2
+void Interface_FTM1_CH2(uint8_t tem) //CATCH2
 {
 	uint8_t chanl[1]={2};
 	uint16_t vol[1];//
-	vol[0]=((u32)tem*FTM_DRV_GetMod(FTM1)/100);
+	vol[0]=((uint32_t)tem*FTM_DRV_GetMod(FTM1)/100);
 
 	printf("\r\n FTM2 Ch0 = %d",vol[0]);
 	FTM2->SC &=~FTM_SC_CLKS_MASK;
@@ -247,11 +247,11 @@ void Interface_FTM1_CH2(u8 tem) //CATCH2
 	FTM2->SC |= FTM_SC_CLKS(3);	
 }
 
-void Interface_FTM1_CH3(u8 tem) //CATCH3
+void Interface_FTM1_CH3(uint8_t tem) //CATCH3
 {
 	uint8_t chanl[1]={3};
 	uint16_t vol[1];//
-	vol[0]=((u32)tem*FTM_DRV_GetMod(FTM1)/100);
+	vol[0]=((uint32_t)tem*FTM_DRV_GetMod(FTM1)/100);
 
 	printf("\r\n FTM2 Ch0 = %d",vol[0]);
 	FTM2->SC &=~FTM_SC_CLKS_MASK;

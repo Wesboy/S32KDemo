@@ -193,21 +193,21 @@ void SysTick_100ms(void)
 	{
 		ResetUserTimer(&iTimer100ms);
 
-		OLE_Display_Char((u8 *)"Hello!!!", (u8 *)"FlyAudio", (u8 *)"Control_borad");
+		OLE_Display_Char((uint8_t *)"Hello!!!", (uint8_t *)"FlyAudio", (uint8_t *)"Control_borad");
 	}
 }
 
 void ADCProc(void)
 {
-	static u32 timer = 0;
+	static uint32_t timer = 0;
 
 	if (ReadUserTimer(&timer) > 500)
 	{
-		u16 ADC_0 = 0;
-		u16 ADC_1 = 0;
-		u16 ADC_2 = 0;
-		u16 ADC_3 = 0;
-		u16 ADC_4 = 0;
+		uint16_t ADC_0 = 0;
+		uint16_t ADC_1 = 0;
+		uint16_t ADC_2 = 0;
+		uint16_t ADC_3 = 0;
+		uint16_t ADC_4 = 0;
 
 		ResetUserTimer(&timer);
 
@@ -225,7 +225,7 @@ void FlySystemProc(void)
 {
 	SysTick_100ms();
 	//FTM_input_capture();
-	//CanProc();
+	CanProc();
 	//LinProc();
 	ADCProc();
 	//CapturePro();
@@ -233,11 +233,6 @@ void FlySystemProc(void)
 	//DataRouter(); //数据整理转发路由功能
 	FeedWdt();
 	DebugPro();
-}
-
-static void ChipPeriodDebug(void)
-{
-	printf("\r\n WakeSrc:%d", paramInfo->WakeUpSrc);
 }
 
 void FlySystem_DisableOutput(void)
@@ -265,7 +260,6 @@ void chipDeInit(void)
 {
 	printf("\r\nchipDeInit");
 
-	paramInfo->GPREG2 = P_SLEEP;
 	SysTickDeInit();
 	FlySystemDeInit();
 }

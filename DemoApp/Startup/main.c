@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <string.h>
 
-#include "config.h"
 #include "interface.h"
 
 
@@ -11,7 +10,7 @@ void WatchdogInit(void);
 int main(void)
 {
 	Interface_Init();	
-	OLE_Display_Char((u8 *)"Hello!!!",(u8 *)"FlyAudio",(u8 *)"Control_borad");
+	OLE_Display_Char((uint8_t *)"Hello!!!",(uint8_t *)"FlyAudio",(uint8_t *)"Control_borad");
 
 	while (1)
 	{

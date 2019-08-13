@@ -1,8 +1,6 @@
 #ifndef __SPI_H__
 #define __SPI_H__
 
-#include "fly_types.h"
-
 #ifndef		_SPI_GLOBAL_
 	#define		SPI_GLOBAL		extern
 
