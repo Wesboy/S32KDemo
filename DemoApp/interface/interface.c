@@ -108,79 +108,12 @@ void UserResetSystem(void)
 	NVIC_SystemReset();
 }
 
-void IntoDeepSleep(void)
-{
 
-	printf("\r\n IntoDeepSleep");
-	AllIOConfigInputForSleep();
-	PutAllDebugInfor();
-	//return;
-	//    //??powerdown????????,IRC???????,?????IRC???????????????????
-	RTCInit(WDT_1HH);
-
-	{
-		pin_settings_config_t config;
-		memset(&config, 0, sizeof(pin_settings_config_t));
-		config.base = PORTC;
-		config.gpioBase = PTC;
-		config.mux = PORT_MUX_AS_GPIO;
-		config.direction = GPIO_INPUT_DIRECTION;
-		config.pullConfig = PORT_INTERNAL_PULL_DOWN_ENABLED;
-		config.pinPortIdx = 15;
-		config.clearIntFlag = true;
-		config.intConfig = PORT_INT_FALLING_EDGE; //falling
-		if (!chipInfo.bForbidCanWakeup)
-		{
-			config.pinPortIdx = 2;
-			PINS_Init(&config); //LCAN_RX_PIN
-		}
-		INT_SYS_EnableIRQ(PORTC_IRQn);
-	}
-
-	ipcEventSet(EVT_SET_GLOBAL_CLR_SLEEP, 0, NULL, 0);
-	SMC->PMCTRL |= 0x2;							//????VLPS????????
-												/* Set the SLEEPDEEP bit to enable deep sleep mode (STOP)*/
-	S32_SCB->SCR |= S32_SCB_SCR_SLEEPDEEP_MASK; //????????????
-
-	/* Cpu is going into deep sleep state */
-	STANDBY(); //???????
-	NVIC_DisableIRQ(PORTC_IRQn);
-	NVIC_DisableIRQ(RTC_IRQn);
-
-	GoT0WhatStatus(0);
-}
-
-/**************************************************************************************************************************
-**????????:		IsResetOrWakeUp
-**????????:
-**??????:     ??
-**???????:     ??
-**************************************************************************************************************************/
-static void IsResetOrWakeUp(void)
-{
-	ePowerStatus IsWhat = RESETUP;
-
-	chipInfo.ResetStatus = paramInfo->GPREG2;
-	paramInfo->GPREG2 = 0;
-	if ((paramInfo->GPREG4 == 0x01) && (chipInfo.ResetStatus != P_SLEEP)) //??????
-	{
-		IsWhat = RESETUP;
-	}
-	else if (chipInfo.ResetStatus == P_SLEEP) //????(?????????????????)
-	{
-		IsWhat = WAKEUP;
-	}
-
-	chipInfo.chipPowerStatus = IsWhat;
-}
 void chipInit(void)
 {
 
 	memset(&chipInfo, 0, sizeof(chipInfo));
 	chipInfo.bForbidCanWakeup = FALSE;
-
-	IsResetOrWakeUp(); ///////////////////////////////////////////////////////////////////
-					   //
 }
 
 ePowerStatus GetPowerOnBootMode(void)
@@ -278,10 +211,6 @@ static void ipcEventChipGet(event_t evt, uint32_t *param, uint8_t *p, uint16_t l
 {
 	switch (evt)
 	{
-	case EVT_GET_CHIP_BOOTMODE:
-		*param = (uint32_t)GetPowerOnBootMode();
-		break;
-
 	default:
 		break;
 	}
@@ -295,44 +224,13 @@ static void ipcEventChipSet(event_t evt, uint32_t param, uint8_t *p, uint16_t le
 {
 	switch (evt)
 	{
-	case EVT_SET_GLOBAL_SYSTEM_INIT_FINISH:
-		/* Android/WinCE Application Is Ready OK */
-		break;
-
-	case EVT_SET_GLOBAL_SYSTEM_READY_TO_RECEIVE_STATUS:
-		/* Android/WinCE Hardware Is Ready OK */
-		break;
-
-	case EVT_SET_GLOBAL_CLR_ACC:
-		chipInfo.AccStatus = (bool)param;
-		break;
-
-	case EVT_SET_CHIP_RESET:
-		UserResetSystem();
-		break;
-
-	case EVT_SET_GLOBAL_PERIOD_DEBUG:
-		ChipPeriodDebug();
-		break;
-
-	case EVT_SET_CHIP_FORBID_CANWAKEUP:
-		if (param)
-		{
-			chipInfo.bForbidCanWakeup = TRUE;
-		}
-		else
-		{
-			chipInfo.bForbidCanWakeup = FALSE;
-		}
-		break;
-
 	default:
 		break;
 	}
 }
 void chipIpcEventRegister(void)
 {
-	ipcEventRegister(EVT_MODE_CHIP, ipcEventChipGet, ipcEventChipSet);
+	//ipcEventRegister(EVT_MODE_CHIP, ipcEventChipGet, ipcEventChipSet);
 }
 
 void ModuleIpcEventRegister(void)

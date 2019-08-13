@@ -6,8 +6,6 @@
 #include "ipcEventDef.h"
 #include "interface.h"
 
-#include "SSD1306_OLED.h"
-#include "SSD1306_flash.h"
 //#include "codetab.h"
 
 #if defined(HEX_DEBUG)
@@ -23,8 +21,6 @@ int main(void)
 {
 	Interface_DebugInit();
 	printf("\r\nLPC BuileTime:%s %s",__DATE__,__TIME__);
-	ipcEventSet(EVT_SET_DEBUGDEMO_OSD_VERSION, 1, (uint8_t *)__DATE__, strlen(__DATE__));
-	ipcEventSet(EVT_SET_DEBUGDEMO_OSD_VERSION, 2, (uint8_t *)__TIME__, strlen(__TIME__));
 
 	IO_Write(IO_LCD_POWER,true);
 	IO_Write(IO_CAN0_WAKE,FALSE); //can0 en
