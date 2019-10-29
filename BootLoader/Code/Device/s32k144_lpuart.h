@@ -1,0 +1,65 @@
+#ifndef __S32K144_LPUART__H__
+#define __S32K144_LPUART__H__
+#include "device_registers.h"  
+
+/*! @brief LPUART parity mode
+ *
+ * Implements : lpuart_parity_mode_t_Class
+ */
+typedef enum
+{
+    LPUART_PARITY_DISABLED = 0x0U, /*!< parity disabled */
+    LPUART_PARITY_EVEN     = 0x2U, /*!< parity enabled, type even, bit setting: PE|PT = 10 */
+    LPUART_PARITY_ODD      = 0x3U  /*!< parity enabled, type odd,  bit setting: PE|PT = 11 */
+} lpuart_parity_mode_t;
+typedef enum
+{
+    LPUART_ONE_STOP_BIT = 0x0U, /*!< one stop bit */
+    LPUART_TWO_STOP_BIT = 0x1U  /*!< two stop bits */
+} lpuart_stop_bit_count_t;
+/*! @brief LPUART number of bits in a character
+ *
+ * Implements : lpuart_bit_count_per_char_t_Class
+ */
+typedef enum
+{
+    LPUART_8_BITS_PER_CHAR  = 0x0U, /*!< 8-bit data characters */
+    LPUART_9_BITS_PER_CHAR  = 0x1U, /*!< 9-bit data characters */
+    LPUART_10_BITS_PER_CHAR = 0x2U  /*!< 10-bit data characters */
+} lpuart_bit_count_per_char_t;
+/*! @brief Type of LPUART transfer (based on interrupts or DMA).
+ *
+ * Implements : lpuart_transfer_type_t_Class
+ */
+typedef enum
+{
+    LPUART_USING_DMA         = 0,    /*!< The driver will use DMA to perform UART transfer */
+    LPUART_USING_INTERRUPTS          /*!< The driver will use interrupts to perform UART transfer */
+} lpuart_transfer_type_t;
+
+
+typedef struct
+{
+    uint32_t baudRate;                           /*!< LPUART baud rate */
+    lpuart_parity_mode_t parityMode;             /*!< parity mode, disabled (default), even, odd */
+    lpuart_stop_bit_count_t stopBitCount;        /*!< number of stop bits, 1 stop bit (default) or 2 stop bits */
+    lpuart_bit_count_per_char_t bitCountPerChar; /*!< number of bits in a character (8-default, 9 or 10);
+                                                      for 9/10 bits chars, users must provide appropriate buffers
+                                                      to the send/receive functions (bits 8/9 in subsequent bytes);
+                                                      for DMA transmission only 8-bit char is supported. */
+//    lpuart_transfer_type_t transferType;         /*!< Type of LPUART transfer (interrupt/dma based) */
+//    uint8_t rxDMAChannel;                        /*!< Channel number for DMA rx channel.
+//                                                      If DMA mode isn't used this field will be ignored. */
+//    uint8_t txDMAChannel;                        /*!< Channel number for DMA tx channel.
+//                                                      If DMA mode isn't used this field will be ignored. */
+} tlpuart_config;
+void lpuart_device_Init(LPUART_Type* base,const tlpuart_config  lpuartConfig);
+	void lpuart_Putchar(LPUART_Type * base, uint8_t data);
+ void lpuart_device_DeInit(LPUART_Type* base);
+#endif
+
+
+
+
+
+
