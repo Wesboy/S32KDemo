@@ -211,11 +211,11 @@ void ADCProc(void)
 
 		ResetUserTimer(&timer);
 
-		ADC_0 = GetAdcChannelValue(CHANNEL_ADC_0);
-		ADC_1 = GetAdcChannelValue(CHANNEL_ADC_1);
-		ADC_2 = GetAdcChannelValue(CHANNEL_ADC_2);
-		ADC_3 = GetAdcChannelValue(CHANNEL_ADC_3);
-		ADC_4 = GetAdcChannelValue(CHANNEL_ADC_4);
+		ADC_0 = GetAdcChannelValue(CHANNEL_ADC0_SE0);
+		ADC_1 = GetAdcChannelValue(CHANNEL_ADC0_SE1);
+		ADC_2 = GetAdcChannelValue(CHANNEL_ADC0_SE2);
+		ADC_3 = GetAdcChannelValue(CHANNEL_ADC0_SE3);
+		ADC_4 = GetAdcChannelValue(CHANNEL_ADC0_SE4);
 
 		printf("ADC : 0x%x 0x%x 0x%x 0x%x 0x%x\r\n", ADC_0, ADC_1, ADC_2, ADC_3, ADC_4);
 	}
@@ -223,14 +223,13 @@ void ADCProc(void)
 
 void FlySystemProc(void)
 {
-	SysTick_100ms();
-	//FTM_input_capture();
-	CanProc();
+//	SysTick_100ms();
+//	//FTM_input_capture();
+//	CanProc();
 	//LinProc();
 	ADCProc();
 	//CapturePro();
 	//GPIOProc();
-	//DataRouter(); //数据整理转发路由功能
 	FeedWdt();
 	DebugPro();
 }

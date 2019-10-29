@@ -114,7 +114,7 @@ static void LpuartDeInit(unsigned char uart_Nu)
 static void Debug_Handler(uint8_t data)
 {
 	//收到直接发
-	lpuart_Putchar(LPUART0, data);
+	lpuart_Putchar(LPUART2, data);
 }
 /*****************************************************************************
 **函数名称:	 	Debug

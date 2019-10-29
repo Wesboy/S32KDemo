@@ -153,8 +153,8 @@ typedef struct
 #define OLED_FSO (GPIO_PTD13)
 
 ////////////////////////////////////ADC/////////////////////////////////////////////
-#define ADC0ConvertBuffrtSize 4
-#define ADC1ConvertBuffrtSize 4
+#define ADC0ConvertBuffrtSize 16
+#define ADC1ConvertBuffrtSize 16
 #define Y_ADC0 0
 #define Y_ADC1 1
 #define CHANNEL_ADC(Z, X, Y) ((Z << 16) | (X << 8) | Y) 
@@ -162,11 +162,22 @@ typedef struct
 #define GET_CHANNEL_ADC_Y(Z) Z && 0XFF
 #define GET_CHANNEL_ADC_Z(Z) Z >> 16
 
-#define CHANNEL_ADC_0 CHANNEL_ADC(0, Y_ADC1, 10) 
-#define CHANNEL_ADC_1 CHANNEL_ADC(1, Y_ADC1, 11)					 
-#define CHANNEL_ADC_2 CHANNEL_ADC(2, Y_ADC1, 12)			 
-#define CHANNEL_ADC_3 CHANNEL_ADC(3, Y_ADC1, 13)	
-#define CHANNEL_ADC_4 CHANNEL_ADC(4, Y_ADC1, 4)
+#define CHANNEL_ADC0_SE0 CHANNEL_ADC(0, Y_ADC0, 0) 
+#define CHANNEL_ADC0_SE1 CHANNEL_ADC(1, Y_ADC0, 1) 
+#define CHANNEL_ADC0_SE2 CHANNEL_ADC(2, Y_ADC0, 2) 
+#define CHANNEL_ADC0_SE3 CHANNEL_ADC(3, Y_ADC0, 3) 
+#define CHANNEL_ADC0_SE4 CHANNEL_ADC(4, Y_ADC0, 4) 
+#define CHANNEL_ADC0_SE5 CHANNEL_ADC(5, Y_ADC0, 5) 
+#define CHANNEL_ADC0_SE6 CHANNEL_ADC(6, Y_ADC0, 6) 
+#define CHANNEL_ADC0_SE7 CHANNEL_ADC(7, Y_ADC0, 7) 
+#define CHANNEL_ADC0_SE8 CHANNEL_ADC(8, Y_ADC0, 8) 
+#define CHANNEL_ADC0_SE9 CHANNEL_ADC(9, Y_ADC0, 9) 
+#define CHANNEL_ADC0_SE10 CHANNEL_ADC(10, Y_ADC0, 10) 
+#define CHANNEL_ADC0_SE11 CHANNEL_ADC(11, Y_ADC0, 11) 
+#define CHANNEL_ADC0_SE12 CHANNEL_ADC(12, Y_ADC0, 12) 
+#define CHANNEL_ADC0_SE13 CHANNEL_ADC(13, Y_ADC0, 13) 
+#define CHANNEL_ADC0_SE14 CHANNEL_ADC(14, Y_ADC0, 14) 
+#define CHANNEL_ADC0_SE15 CHANNEL_ADC(15, Y_ADC0, 15) 
 
 ////////////////////////////////////////////////////////////////////////////////////
 

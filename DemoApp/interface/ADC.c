@@ -103,11 +103,11 @@ void ADC_init(void)
 	PDB_DRV_LoadValuesCmd(1);						 //PDB数据装载
 	/************************************************************************************/
 
-	ADC_ConfigChan(CHANNEL_ADC_0);
-	ADC_ConfigChan(CHANNEL_ADC_1);
-	ADC_ConfigChan(CHANNEL_ADC_2);
-	ADC_ConfigChan(CHANNEL_ADC_3);
-	ADC_ConfigChan(CHANNEL_ADC_4);
+	ADC_ConfigChan(CHANNEL_ADC0_SE0);
+	ADC_ConfigChan(CHANNEL_ADC0_SE1);
+	ADC_ConfigChan(CHANNEL_ADC0_SE2);
+	ADC_ConfigChan(CHANNEL_ADC0_SE3);
+	ADC_ConfigChan(CHANNEL_ADC0_SE4);
 
 	PDB_DRV_SoftTriggerCmd(0); //PDB触发 触发一次，后续自动触发
 	PDB_DRV_SoftTriggerCmd(1); //PDB触发
