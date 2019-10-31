@@ -42,6 +42,52 @@
 #include <string.h>
 #include "codetab.h"
 
+/* SSD1306 commands */
+#define SSD1306_SET_MEM_ADDR_MODE    (0x20)
+
+#define SSD1306_SET_COL_ADDR         (0x21)
+#define SSD1306_SET_PAGE_ADDR        (0x22)
+#define SSD1306_SET_DISP_START_LINE  (0x40)
+#define SSD1306_SET_CONTRAST         (0x81)
+#define SSD1306_SET_SEGMENT_REMAP0   (0xA0)
+#define SSD1306_SET_SEGMENT_REMAP1   (0xA1)
+#define SSD1306_SET_ENTIRE_DISP_ON   (0xA5)
+#define SSD1306_SET_ENTIRE_DISP_OFF  (0xA4)
+#define SSD1306_SET_INVERSION_OFF    (0xA6)
+#define SSD1306_SET_INVERSION_ON     (0xA7)
+
+#define SSD1306_SET_MUX_RATIO        (0xA8)
+#define SSD1306_MUX_RATIO_MASK       (0x3F)
+#define SSD1306_SET_DISPLAY_OFF      (0xAE)
+#define SSD1306_SET_DISPLAY_ON       (0xAF)
+#define SSD1306_SET_SCAN_DIR_FWD     (0xC0)
+#define SSD1306_SET_SCAN_DIR_BWD     (0xC8)
+#define SSD1306_SET_DISPLAY_OFFSET   (0xD3)
+#define SSD1306_SET_OSC_FREQ         (0xD5)
+#define SSD1306_SET_PRE_CHRG_PER     (0xD9)
+
+#define SSD1306_SET_COM_PINS_HW_CFG  (0xDA)
+#define SSD1306_COM_PINS_HW_CFG_MASK (0x32)
+#define SSD1306_SEQ_COM_PINS_CFG     (0x02)
+#define SSD1306_ALT_COM_PINS_CFG     (0x12)
+#define SSD1306_COM_LR_REMAP_OFF     (0x02)
+#define SSD1306_COM_LR_REMAP_ON      (0x22)
+
+#define SSD1306_SET_DESEL_LVL        (0xDB)
+#define SSD1306_SET_NOP              (0xE3)
+
+#define SSD1306_SET_CHARGE_PUMP      (0x8D)
+#define SSD1306_CHARGE_PUMP_EN       (0x14)
+#define SSD1306_CHARGE_PUMP_DIS      (0x10)
+
+#define SSD1306_SCROLL_HOR_LEFT      (0x27)
+#define SSD1306_SCROLL_HOR_RIGHT     (0x26)
+#define SSD1306_SCROLL_HOR_VER_LEFT  (0x2A)
+#define SSD1306_SCROLL_HOR_VER_RIGHT (0x29)
+#define SSD1306_SCROLL_ENABLE        (0x2F)
+#define SSD1306_SCROLL_DISABLE       (0x2E)
+
+
 extern void DelayUs(uint8_t time);
 
 void OLED_WrDat(unsigned char dat) //写数据
@@ -90,6 +136,7 @@ void OLED_SetPos(unsigned char x, unsigned char y) //设置起始点坐标
 	OLED_WrCmd(((x & 0xf0) >> 4) | 0x10);
 	OLED_WrCmd((x & 0x0f) | 0x01);
 }
+
 
 void OLED_Fill(unsigned char bmp_dat) //全屏填充
 {
@@ -150,7 +197,7 @@ void OLED_Init(void)
 	Delayms(200);
 
 	OLED_CS_Clr();
-	OLED_WrCmd(0xae);
+	OLED_WrCmd(0xae);		//into Sleep Mode
 	OLED_WrCmd(0xae);		//--turn off oled panel
 	OLED_WrCmd(0x00);		//---set low column address
 	OLED_WrCmd(0x10);		//---set high column address
@@ -185,9 +232,21 @@ void OLED_Init(void)
 	OLED_WrCmd(0xa4); // Disable Entire Display On (0xa4/0xa5)
 	OLED_WrCmd(0xa6); // Disable Inverse Display On (0xa6/a7)
 	OLED_WrCmd(0xaf); //--turn on oled panel
+					 //Into normal mode
 	OLED_Fill(0x00);
 	OLED_SetPos(0, 0);
 	OLED_CS_Set();
+}
+
+void LcdDisplay_Chinese(uint8_t xPos, uint8_t yPos, uint8_t *GBCodeptr)
+{
+	uint8_t i, len;
+	len = strlen((const char *)GBCodeptr);
+	for (i = 0; i < len; i++)
+	{
+		LcdDisplay_HZ(xPos + i * 8, yPos, GBCodeptr + i);
+		i++;
+	}
 }
 
 void LcdDisChar(uint8_t xPos, uint8_t yPos, uint8_t zknum, uint8_t *zkzip)
@@ -255,28 +314,7 @@ uint8_t LcdDisplay_ASCII_MAP(uint8_t *GBCodeptr)
 	}
 	return 1;
 }
-/*
-void LcdDisplay_Chinese(uint8_t xPos,uint8_t yPos,uint8_t *GBCodeptr)
-{
-	uint8_t i,len;
-	len =  strlen((const char*)GBCodeptr);
-	for(i=0;i<len;i++)	
-	{
-	   	LcdDisplay_HZ(xPos+i*8,yPos,GBCodeptr+i);
-		i++;
-	}
-}
 
-void LcdDisplay_char(uint8_t xPos,uint8_t yPos,uint8_t *GBCodeptr)
-{
-  uint8_t i, len;
-	len =  strlen((const char*)GBCodeptr);
-  for(i=0;i<len;i++)	
-	{
-		LcdDisplay_HZ(xPos+i*8,yPos,GBCodeptr+i);
-	}
-}
-*/
 void LcdDisplay_ASCII(uint8_t yPos, uint8_t *GBCodeptr)
 {
 	uint8_t i, len;

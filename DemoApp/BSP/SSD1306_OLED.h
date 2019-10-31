@@ -68,6 +68,7 @@ void OLED_SetPos(unsigned char x, unsigned char y);//设置起始点坐标
 void OLED_Fill(unsigned char bmp_dat);//全屏填充
 void OLED_CLS(void);//清屏
 void OLED_Init(void);//初始化
+void ssd1306_display_on(bool on);
 
 void LcdDisplay_ASCII(uint8_t yPos,uint8_t *GBCodeptr);
 void LcdDisChar(uint8_t xPos,uint8_t yPos,uint8_t zknum,uint8_t *zkzip);

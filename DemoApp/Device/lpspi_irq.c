@@ -106,10 +106,10 @@ void LPSPI1_IRQHandler(void)
  *
  * It passes the instance to the shared LPSPI IRQ handler.
  */
-void LPSPI0_IRQHandler(void)
-{
-    LPSPI_DRV_IRQHandler(0U);
-}
+//void LPSPI0_IRQHandler(void)
+//{
+//    LPSPI_DRV_IRQHandler(0U);
+//}
 
 /*!
  * @brief This function is the implementation of LPSPI1 handler named in startup code.

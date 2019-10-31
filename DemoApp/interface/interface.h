@@ -145,7 +145,7 @@ typedef struct
 #define LOW 0
 
 #define OLED_POWER (GPIO_PTD12)
-#define OLED_CS1 (GPIO_PTD14)
+#define OLED_CS1 (GPIO_PTB5)
 #define OLED_DC (GPIO_PTE8)
 #define OLED_SDI (GPIO_PTD16)
 #define OLED_CLK (GPIO_PTD15)

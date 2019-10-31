@@ -72,18 +72,18 @@ uint8_t Write_FF(uint8_t value)
 	FF_CLK(1);
 	for(i=0;i<8;i++)
 	{
-	 FF_CLK(0);
-	 DelayUs(2);
-	 if((value&0x80)==0x80)
-		 FF_SO(1);
-	 else
-		 FF_SO(0); 
-	 value<<=1;
-	 DelayUs(2);
-	 FF_CLK(1);
-	 DelayUs(2);
-	 temp<<=1;
-	 if(IO_Read(GPIO_PTD13)) //GPIOA.9 ÎªFSO½Å
+		FF_CLK(0);
+		DelayUs(2);
+		if((value&0x80)==0x80)
+			FF_SO(1);
+		else
+			FF_SO(0); 
+		value<<=1;
+		DelayUs(2);
+		FF_CLK(1);
+		DelayUs(2);
+		temp<<=1;
+		if(IO_Read(GPIO_PTD13)) //GPIOD13 ÎªFSO½Å
 			temp++;
 	}
 	return(temp);
