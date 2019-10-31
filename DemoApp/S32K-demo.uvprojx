@@ -337,7 +337,7 @@
               <MiscControls> -DCAR_SEL=CAR_NORMAL -DDEBUGMSG=1  -DAUDIO_CHIP=SAF775D_AUDIO</MiscControls>
               <Define></Define>
               <Undefine></Undefine>
-              <IncludePath>.\Device;.\interface;.\Startup;.\Startup\S32K144UFxxxLLx;.\Startup\Include;.\BSP</IncludePath>
+              <IncludePath>.\Device;.\interface;.\Startup;.\Startup\S32K144UFxxxLLx;.\Startup\Include;.\BSP\LCD\OLED12864</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -689,12 +689,12 @@
             <File>
               <FileName>SSD1306_flash.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\BSP\SSD1306_flash.c</FilePath>
+              <FilePath>.\BSP\LCD\OLED12864\SSD1306_flash.c</FilePath>
             </File>
             <File>
               <FileName>SSD1306_OLED.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\BSP\SSD1306_OLED.c</FilePath>
+              <FilePath>.\BSP\LCD\OLED12864\SSD1306_OLED.c</FilePath>
             </File>
           </Files>
         </Group>
