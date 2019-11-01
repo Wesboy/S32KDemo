@@ -337,7 +337,7 @@
               <MiscControls> -DCAR_SEL=CAR_NORMAL -DDEBUGMSG=1  -DAUDIO_CHIP=SAF775D_AUDIO</MiscControls>
               <Define></Define>
               <Undefine></Undefine>
-              <IncludePath>.\Device;.\interface;.\Startup;.\Startup\S32K144UFxxxLLx;.\Startup\Include;.\BSP\LCD\OLED12864</IncludePath>
+              <IncludePath>.\Device;.\interface;.\Startup;.\Startup\S32K144UFxxxLLx;.\Startup\Include;.\BSP\LCD\OLED12864;.\BSP\MPU6050;.\Simulation_Interface\I2C</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -450,6 +450,11 @@
               <FileName>CAN.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\interface\CAN.c</FilePath>
+            </File>
+            <File>
+              <FileName>Simulation_i2c.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Simulation_Interface\I2C\Simulation_i2c.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -695,6 +700,11 @@
               <FileName>SSD1306_OLED.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\BSP\LCD\OLED12864\SSD1306_OLED.c</FilePath>
+            </File>
+            <File>
+              <FileName>bsp_MPU6050.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\BSP\MPU6050\bsp_MPU6050.c</FilePath>
             </File>
           </Files>
         </Group>

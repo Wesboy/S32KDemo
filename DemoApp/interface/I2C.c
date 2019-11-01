@@ -49,51 +49,51 @@ void i2cmasterCallback(i2c_master_event_t event,void *data)
 ******************************************************************/
 void I2CMasterInit(uint32_t baud)
 {
-		/*串口时钟开启*/
-		module_clk_config_t module_clk_config;
-		module_clk_config.clkSrcFreq =LOWEST_FREQUENCY;//
-		module_clk_config.clkSrcType=XOSC_CLK_SRC_TYPE;
-		CLOCK_DRV_SetModuleClock(LPI2C0_CLK,&module_clk_config);
-		
-		pin_settings_config_t g_pin_mux_InitConfigArr[2] = 
-		{
-				{
-					 .base          = PORTA,
-					 .pinPortIdx    = 3u,
-					 .pullConfig    = PORT_INTERNAL_PULL_NOT_ENABLED,
-					 .passiveFilter = false,
-					 .driveSelect   = PORT_LOW_DRIVE_STRENGTH,
-					 .mux           = PORT_MUX_ALT3,
-					 .pinLock       = false,
-					 .intConfig     = PORT_DMA_INT_DISABLED,
-					 .clearIntFlag  = false,
-					 .gpioBase      = NULL,
-				},
-				{
-						 .base          = PORTA,
-						 .pinPortIdx    = 2u,
-						 .pullConfig    = PORT_INTERNAL_PULL_NOT_ENABLED,
-						 .passiveFilter = false,
-						 .driveSelect   = PORT_LOW_DRIVE_STRENGTH,
-						 .mux           = PORT_MUX_ALT3,
-						 .pinLock       = false,
-						 .intConfig     = PORT_DMA_INT_DISABLED,
-						 .clearIntFlag  = false,
-						 .gpioBase      = NULL,
-					}
-		};
-		
-		PINS_DRV_Init(2, g_pin_mux_InitConfigArr);
+	/*串口时钟开启*/
+	module_clk_config_t module_clk_config;
+	module_clk_config.clkSrcFreq =LOWEST_FREQUENCY;//
+	module_clk_config.clkSrcType=XOSC_CLK_SRC_TYPE;
+	CLOCK_DRV_SetModuleClock(LPI2C0_CLK,&module_clk_config);
 
-		lpi2c_master_user_config_t lpi2c_master_user_config;
-		lpi2c_master_user_config.baudRate=baud;
-		lpi2c_master_user_config.operatingMode=LPI2C_FAST_MODE;
-		lpi2c_master_user_config.slaveAddress=0;
-		lpi2c_master_user_config.transferType=LPI2C_USING_INTERRUPTS;
-		lpi2c_master_user_config.masterCallback=i2cmasterCallback;				
-		LPI2C_DRV_MasterInit(0,&lpi2c_master_user_config,&lpi2c_master_state);
-		INT_SYS_EnableIRQ(LPI2C0_Master_IRQn);
-		INT_SYS_SetPriority(LPI2C0_Master_IRQn, 5);	
+	pin_settings_config_t g_pin_mux_InitConfigArr[2] = 
+	{
+		{
+			.base          = PORTA,
+			.pinPortIdx    = 3u,
+			.pullConfig    = PORT_INTERNAL_PULL_NOT_ENABLED,
+			.passiveFilter = false,
+			.driveSelect   = PORT_LOW_DRIVE_STRENGTH,
+			.mux           = PORT_MUX_ALT3,
+			.pinLock       = false,
+			.intConfig     = PORT_DMA_INT_DISABLED,
+			.clearIntFlag  = false,
+			.gpioBase      = NULL,
+		},
+		{
+			.base          = PORTA,
+			.pinPortIdx    = 2u,
+			.pullConfig    = PORT_INTERNAL_PULL_NOT_ENABLED,
+			.passiveFilter = false,
+			.driveSelect   = PORT_LOW_DRIVE_STRENGTH,
+			.mux           = PORT_MUX_ALT3,
+			.pinLock       = false,
+			.intConfig     = PORT_DMA_INT_DISABLED,
+			.clearIntFlag  = false,
+			.gpioBase      = NULL,
+		}
+	};
+
+	PINS_DRV_Init(2, g_pin_mux_InitConfigArr);
+
+	lpi2c_master_user_config_t lpi2c_master_user_config;
+	lpi2c_master_user_config.baudRate=baud;
+	lpi2c_master_user_config.operatingMode=LPI2C_FAST_MODE;
+	lpi2c_master_user_config.slaveAddress=0;
+	lpi2c_master_user_config.transferType=LPI2C_USING_INTERRUPTS;
+	lpi2c_master_user_config.masterCallback=i2cmasterCallback;				
+	LPI2C_DRV_MasterInit(0,&lpi2c_master_user_config,&lpi2c_master_state);
+	INT_SYS_EnableIRQ(LPI2C0_Master_IRQn);
+	INT_SYS_SetPriority(LPI2C0_Master_IRQn, 5);	
 }
 
 /*****************************************************************
@@ -135,45 +135,58 @@ uint32_t I2C_TransferBuff(uint8_t slaveAddress,uint8_t *buffer,uint8_t len)
 /*****************************************************************
 ***	函数： Interface_I2C_Write
 **  功能： I2C写数据
-***	备注： adder为8位地址
+***	备注： addr为8位地址
 ******************************************************************/
-void Interface_I2C_Write(uint8_t adder,uint8_t *buffer,uint8_t len)
+void Interface_I2C_Write(uint8_t addr,uint8_t *buffer,uint8_t len)
 {
 	while(STATUS_BUSY==I2C_GetMasterState());
-	I2C_TransferBuff(adder,buffer,len);	
+	I2C_TransferBuff(addr,buffer,len);	
 }
 /*****************************************************************
 ***	函数： Interface_I2C_Read
 **  功能： I2C写数据
-***	备注： adder为8位
+***	备注： addr为8位
 ******************************************************************/
-bool Interface_I2C_Read(uint8_t adder,uint8_t *buffer,uint8_t len)
+bool Interface_I2C_Read(uint8_t addr,uint8_t *buffer,uint8_t len)
 {
 	while(STATUS_BUSY==I2C_GetMasterState());//等待空闲
 
-	I2C_TransferBuff((adder|0x1),buffer,len);
+	I2C_TransferBuff((addr|0x1),buffer,len);
 
 	while(lpi2c_master_state.status==STATUS_BUSY)
 				;
 	return lpi2c_master_state.status?false:true;	
 }
 /*****************************************************************
-***	函数： Interface_I2C_Read
+***	函数： Interface_I2C_SlaveAddr_Read
 **  功能： I2C写数据
-***	备注： adder为8位地址，SlaveAddr寄存器地址
+***	备注： addr为8位地址，SlaveAddr寄存器地址
 ******************************************************************/
-bool Interface_I2C_SlaveAddr_Read(uint8_t adder,uint8_t SlaveAddr,uint8_t *buffer,uint8_t len)
+bool Interface_I2C_SlaveAddr_Read(uint8_t addr,uint8_t SlaveAddr,uint8_t *buffer,uint8_t len)
 {
+	uint8_t rStartBuf[2];
+	rStartBuf[0] = addr;
+	rStartBuf[1] = SlaveAddr;
+
 	while(STATUS_BUSY==I2C_GetMasterState());
-	I2C_TransferBuff(adder,&adder,1);
+	I2C_TransferBuff((addr | 0x1), rStartBuf, 2);
 	while(STATUS_BUSY==I2C_GetMasterState());
-	I2C_TransferBuff((adder|0x1),buffer,len);
+	I2C_TransferBuff((addr|0x1),buffer,len);
 	while(STATUS_BUSY==I2C_GetMasterState());
 	return I2C_GetMasterState();	
 }
 
-
-
-
-
-
+/*****************************************************************
+***	函数： Interface_I2C_Write
+**  功能： I2C写数据
+***	备注： addr为8位地址
+******************************************************************/
+bool Interface_I2C_SlaveAddr_Write(uint8_t addr, uint8_t *buffer, uint8_t len)
+{
+	while (STATUS_BUSY == I2C_GetMasterState());
+	I2C_TransferBuff(addr, &addr, 1);
+	while (STATUS_BUSY == I2C_GetMasterState());
+	I2C_TransferBuff((addr & 0xFE), buffer, len);
+	while (STATUS_BUSY == I2C_GetMasterState());
+	return I2C_GetMasterState();
+}

@@ -1,6 +1,6 @@
 
 #include "interface.h"
-
+#include "bsp_MPU6050.h"
 typedef struct
 {
 	uint32_t bUpdateSystemFlag;
@@ -145,6 +145,12 @@ static void SSD1306LCD_Init(void)
 	Delayms(10);
 }
 
+static void bsp_init(void)
+{
+	SSD1306LCD_Init();
+	InitMPU6050();
+}
+
 void Interface_Init(void)
 {
 	clock_manager_user_config_t config;
@@ -172,9 +178,9 @@ void Interface_Init(void)
 
 	SPI1_Init();
 	SPI2_Init();
-	I2CMasterInit(100000);
+	// I2CMasterInit(400000);
 
-	SSD1306LCD_Init();
+	bsp_init();
 }
 
 void AllIOConfigInputForSleep(void)
@@ -218,6 +224,8 @@ void ADCProc(void)
 		ADC_4 = GetAdcChannelValue(CHANNEL_ADC0_SE4);
 
 		printf("ADC : 0x%x 0x%x 0x%x 0x%x 0x%x\r\n", ADC_0, ADC_1, ADC_2, ADC_3, ADC_4);
+
+		MPU6050_Proc();
 	}
 }
 
@@ -232,6 +240,7 @@ void FlySystemProc(void)
 	//GPIOProc();
 	FeedWdt();
 	DebugPro();
+
 }
 
 void FlySystem_DisableOutput(void)
